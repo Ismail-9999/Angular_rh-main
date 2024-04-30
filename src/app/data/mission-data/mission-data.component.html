@@ -1,0 +1,71 @@
+<div class="filter-bar">
+  <!-- Filter Input -->
+  <mat-form-field>
+    <mat-label>Barre de recherche</mat-label>
+    <input matInput [formControl]="filter" placeholder="Recherche">
+  </mat-form-field>
+</div>
+<div class="mat-elevation-z8 small-table">
+  <table
+    mat-table
+    class="full-width-table"
+    [dataSource]="dataSource"
+    matSortActive="id"
+    matSortDirection="asc"
+    matSort
+    aria-label="Elements"
+  >
+    <!-- Id Column -->
+    <ng-container matColumnDef="mission_ref">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Bon de commande</th>
+      <td mat-cell *matCellDef="let row">
+        {{ row.mission_ref }}
+      </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="designation">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Designation</th>
+      <td mat-cell *matCellDef="let row">{{ row.designation }}</td>
+    </ng-container>
+    <!-- Name Column -->
+    <ng-container matColumnDef="missionid">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        ID
+      </th>
+      <td mat-cell *matCellDef="let row">
+        {{ row.mission_id }}
+      </td>
+    </ng-container>
+    <!-- Name Column 
+    <ng-container matColumnDef="entite">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Entite</th>
+      <td mat-cell *matCellDef="let row">{{ row.entite }}</td>
+    </ng-container>-->
+    <!-- Name Column
+    <ng-container matColumnDef="nombrej">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>nombrej</th>
+      <td mat-cell *matCellDef="let row">{{ row.nombrej }}</td>
+    </ng-container> -->
+    <!-- Name Column -->
+    <ng-container matColumnDef="client">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Client</th>
+      <td mat-cell *matCellDef="let row">{{ row.client?.clientname }}</td>
+    </ng-container>
+    <!-- Name Column -->
+    <ng-container matColumnDef="consultant">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Consultant</th>
+      <td mat-cell *matCellDef="let row ">
+      <ng-container *ngFor="let missions of row.missions">
+        {{ missions.consultantname }}
+      </ng-container>
+    </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+
+  <mat-paginator #paginator [length]="8" [pageIndex]="0" [pageSize]="8">
+  </mat-paginator>
+</div>

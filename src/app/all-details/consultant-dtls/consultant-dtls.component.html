@@ -1,0 +1,191 @@
+<mat-card class="main-card">
+  <div style="display: flex; align-items: center;">
+    <button mat-icon-button (click)="goBack()">
+      <mat-icon>keyboard_arrow_left</mat-icon>
+      <span style="margin-left: 4px;" > </span>
+    </button>
+  </div>
+  <mat-card-header>
+    <mat-card-title>
+      <div class="header-container" *ngIf="consultant">
+        <h2 style="display: inline-block">Details: {{ consultant.consultantname }}</h2>
+        
+        <!-- <span class="status-label" [ngClass]="getStatusClass()">
+          {{ consultant?.status }}
+        </span> -->
+        <span class="status-label" [ngClass]="getStatusClass()" [style.color]="consultant.status === 'Consultant' ? 'green' : 
+            consultant.status === 'consultant' ? 'blue': 'red'">
+              {{ consultant.status }}
+            </span> 
+        
+      </div>
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content class="dashboard-card-content">
+    <title>Details</title>
+
+    <div class="main">
+      <div class="client-details" *ngIf="consultant">
+        <!-- Information Box 1 -->
+        <div class="info-box">
+          <h3><strong>Nom du consultant</strong></h3>
+          <p>{{ consultant?.consultantname }}</p>
+        </div>
+
+        <!-- Information Box 2 -->
+        <div class="info-box">
+          <h3><strong>Carte d'identité nationnal </strong></h3>
+          <p>
+            {{
+              consultant.consultantcin == null
+                ? "Non renseigné"
+                : consultant.consultantcin
+            }}
+          </p>
+        </div>
+        <!-- Information Box 3 -->
+        <div class="info-box">
+          <h3><strong>Date de Naissance</strong></h3>
+          <p>
+            {{
+              consultant.consultantbirthdate == null
+                ? "Non renseigné"
+                : (consultant.consultantbirthdate | date)
+            }}
+          </p>
+        </div>
+
+        <!-- Information Box 3 -->
+        <div class="info-box">
+          <h3><strong>Numéro de telephone</strong></h3>
+          <p>0{{ consultant.mobile }}</p>
+        </div>
+
+        <div class="info-box">
+          <h3><strong>Adresse mail</strong></h3>
+          <p>
+            {{
+              consultant.email == null || consultant.email == ""
+                ? "Non renseigné"
+                : consultant.email
+            }}
+          </p>
+        </div>
+
+        <div class="info-box">
+          <h3><strong>Experience professionnel</strong></h3>
+          <p>
+            {{
+              consultant.experiencepro == null || consultant.experiencepro == ""
+                ? "Non renseigné"
+                : consultant.experiencepro
+            }}
+          </p>
+        </div>
+
+        <div class="info-box">
+          <h3><strong>Secteur d'activité</strong></h3>
+          <p>
+            {{
+              consultant.secteuractivite == null ||
+              consultant.secteuractivite == ""
+                ? "Non renseigné"
+                : consultant.secteuractivite
+            }}
+          </p>
+        </div>
+
+        <div class="info-box">
+          <h3><strong>Taux journalier</strong></h3>
+          <p>
+            {{
+              consultant.tjm == null ||
+              consultant.tjm == ""
+                ? "Non renseigné"
+                : consultant.tjm
+            }}
+          </p>
+        </div>
+      </div>
+
+      &nbsp;
+      <div class="example-button-row">
+        <button mat-raised-button color="primary" (click)="openDialog2()">Modifier</button>
+        <button mat-raised-button
+          color="accent"
+          (click)="openDialog(consultant)" 
+       > Associer mission
+        </button>
+        <button mat-raised-button *ngIf="consultant.status !== 'Terminer'"
+         style="background-color: green; color: white;" (click)="openDialog3()">
+          Clôturer</button>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>
+&nbsp;
+<mat-card class="main-card">
+  <mat-card-header>
+    <mat-card-title>
+      <div class="header-container" *ngIf="consultant">
+        <h2>Missions du consultant: {{ consultant.consultantname }}</h2>
+      </div>
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content class="dashboard-card-content">
+    <title>Missions du consultants</title>
+
+    <div class="custom-dialog" #pdfContent>
+      <table
+        mat-table
+        [dataSource]="consultant?.mission"
+        class="mat-elevation-z8"
+      >
+        <!-- Mission Ref Column -->
+        <ng-container matColumnDef="mission_ref">
+          <th mat-header-cell *matHeaderCellDef>Mission ID</th>
+          <td mat-cell *matCellDef="let mission">{{ mission.mission_ref }}</td>
+        </ng-container>
+
+        <!-- Mission Name Column -->
+        <ng-container matColumnDef="missionname">
+          <th mat-header-cell *matHeaderCellDef>Designation</th>
+          <td mat-cell *matCellDef="let mission">{{ mission.designation }}</td>
+        </ng-container>
+
+        <!-- Mission Address Column -->
+        <ng-container matColumnDef="missionaddres">
+          <th mat-header-cell *matHeaderCellDef>Lieu d'imputation</th>
+          <td mat-cell *matCellDef="let mission">{{ mission.lieuimput }}</td>
+        </ng-container>
+
+        <!-- Mobile Column -->
+        <ng-container matColumnDef="mobile">
+          <th mat-header-cell *matHeaderCellDef>Entite</th>
+          <td mat-cell *matCellDef="let mission">{{ mission.entite }}</td>
+        </ng-container>
+
+        <!-- Define the columns -->
+        <tr
+          mat-header-row
+          *matHeaderRowDef="[
+            'mission_ref',
+            'missionname',
+            'missionaddres',
+            'mobile'
+          ]"
+        ></tr>
+        <tr
+          mat-row
+          *matRowDef="
+            let row;
+            columns: ['mission_ref', 'missionname', 'missionaddres', 'mobile']
+          "
+        ></tr>
+      </table>
+
+      <!--mat-paginator #paginator [length]="3" [pageIndex]="0" [pageSize]="3">
+      </mat-paginator>-->
+    </div>
+  </mat-card-content>
+</mat-card>

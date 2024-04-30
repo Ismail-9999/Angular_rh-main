@@ -1,0 +1,65 @@
+.client-details {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .info-box {
+    width: 30%;
+    margin: 10px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+   
+  }
+  .edit-icon {
+    margin-left: auto;
+  }
+  
+   
+  .example-button-row {
+      display: table-cell;
+      max-width: 600px;
+      display: flex;
+      gap: 10px; /* Adjust the gap as needed */
+    }
+   
+    .custom-primary-button {
+      background-color: #2196F3;  
+      color: #ffffff;  
+  }
+  
+  .green-button {
+    background-color: green;
+    color: white;
+  }
+  
+  .custom-secondary-button {
+    background-color: #ff5722; /* Change to your desired color */
+    color: white; /* Change to your desired text color */
+  }
+  
+
+  .status-card {
+    display: inline-block;
+    margin-left: 10px; /* Ajustez la marge selon vos besoins */
+  }
+
+  .status-label {
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: bold;
+  }
+  
+  // .brouillon {
+  //   color: grey; // Couleur du texte pour le statut "brouillon"
+  // }
+  
+  .prospect {
+    color: green; // Couleur du texte pour le statut "prospect"
+  }
+  
+  .consultant {
+    color: red; // Couleur du texte pour le statut "consultant"
+  }
+
+  

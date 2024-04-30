@@ -1,0 +1,39 @@
+<!-- login.component.html -->
+<div
+  class="auth-wrapper d-flex no-block justify-content-center align-items-center"
+  style="background: url(assets/b.jpg) no-repeat center center"
+>
+  <div class="login-container">
+    <mat-card class="login-card">
+      <mat-card-header>
+        <div style="margin-right: 120%; justify-content: center">
+          <mat-card-title> Identification</mat-card-title>
+        </div>
+      </mat-card-header>
+      <div class="logins">
+        <mat-card-content>
+          <form>
+            <mat-form-field class="full-width">
+              <input
+                matInput
+                placeholder="Identifiant"
+                name="email"
+                [(ngModel)]="model.username"
+              />
+            </mat-form-field>
+            <mat-form-field class="full-width">
+              <input
+                matInput
+                placeholder="Mot de passe"
+                name="password"
+                type="password"
+                [(ngModel)]="model.password"
+              />
+            </mat-form-field>
+            <button  mat-raised-button color="primary" class="full-width" (click)="login()" >Login</button>
+          </form>
+        </mat-card-content>
+      </div>
+    </mat-card>
+  </div>
+</div>

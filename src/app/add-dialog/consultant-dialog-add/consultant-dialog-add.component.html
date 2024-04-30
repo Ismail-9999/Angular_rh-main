@@ -1,0 +1,108 @@
+<div mat-dialog-title>
+  <h1>Ajouter un Consultant</h1>
+</div>
+
+<style>
+  .content {
+    width: 100%;
+  }
+
+  .row {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .mat-form-field {
+    width: 100%;
+  }
+</style>
+
+<div class="main">
+  <div mat-dialog-content class="content">
+    <div class="row">
+      <mat-form-field appearance="outline">
+        <mat-label>Nom</mat-label>
+        <input
+          matInput
+          type="text"
+          [(ngModel)]="consultantname"
+          [ngModelOptions]="{ standalone: true }"
+          placeholder="Nom du consultant"
+        />
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Carte National</mat-label>
+        <input
+          matInput
+          type="text"
+          [(ngModel)]="consultantcin"
+          [ngModelOptions]="{ standalone: true }"
+          placeholder="CIN"
+        />
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Telephone</mat-label>
+        <input
+          matInput
+          type="number"
+          [(ngModel)]="mobile"
+          [ngModelOptions]="{ standalone: true }"
+          placeholder="GSM"
+        />
+      </mat-form-field>
+    </div>
+    <div class="row">
+      <mat-form-field appearance="outline">
+        <mat-label>Date de naissance</mat-label>
+        <input
+          matInput
+          type="date"
+          [(ngModel)]="consultantbirthdate"
+          [ngModelOptions]="{ standalone: true }"
+          placeholder="Date de naissance"
+        />
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Adresse mail</mat-label>
+        <input matInput type="text"
+        [(ngModel)]="email"
+        [ngModelOptions]="{ standalone: true }"
+        placeholder="Adresse mail" />
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Taux journalier</mat-label>
+        <input matInput type="number"
+        [(ngModel)]="tjm"
+        [ngModelOptions]="{ standalone: true }"
+        placeholder="TJM" />
+      </mat-form-field>
+    </div>
+    <div class="row">
+      <mat-form-field appearance="outline">
+        <mat-label>Secteur d'activité</mat-label>
+        <input matInput type="text"
+        [(ngModel)]="secteuractivite"
+        [ngModelOptions]="{ standalone: true }"
+        placeholder="Secteur d'activité" />
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Compétence métier</mat-label>
+        <input matInput type="text" 
+        [(ngModel)]="competencemetier"
+        [ngModelOptions]="{ standalone: true }"
+        placeholder="Compétence métier" />
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Experience professionnel </mat-label>
+        <textarea matInput type="text" 
+        [(ngModel)]="experiencepro"
+        [ngModelOptions]="{ standalone: true }"
+        placeholder="Experience professionnel" ></textarea>
+      </mat-form-field>
+    </div>
+  </div>
+</div>
+<div mat-dialog-actions>
+    <button mat-raised-button color="primary" (click)="save()">Sauveguarder</button>
+    <button mat-raised-button color="warn" (click)="close()">Annuler</button>
+  </div>

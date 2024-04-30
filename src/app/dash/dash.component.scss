@@ -1,0 +1,82 @@
+.grid-container {
+  margin: 20px;
+}
+
+.dashboard-card {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  right: 15px;
+  bottom: 15px;
+}
+
+.more-button {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+}
+
+.dashboard-card-content {
+  text-align: center;
+  
+}
+
+.indigo{
+  background: RGB(63, 81, 181);
+  border-radius: 10px;
+  padding: 1.2rem;
+  height: 70px;
+  width:200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all 0.5s ease-in-out;
+}
+
+.mat-h1 {
+  font-style: italic;
+  font-family:   sans-serif;}
+
+  
+  .app-card {
+     
+    font-style: italic;
+    font-family: 'Your Great Font', sans-serif; 
+  }
+
+  .app-card .ster{
+    //  position: relative; /* Supprimer la position absolue pour permettre l'ajustement automatique */
+    // width: calc(100% - 30px); /* Utiliser la largeur automatique pour s'ajuster à la taille du contenu */
+    // max-width: 100%; /* Limiter la largeur maximale à la taille de son conteneur */
+    // margin: 15px; /* Ajouter une marge autour de la carte pour l'espacement */
+    // border-radius: 10px;
+    // padding: 12.2rem;
+    // height: auto; /* Utiliser la hauteur automatique pour s'adapter au contenu */
+    // display: flex;
+    // flex-direction: column;
+    // justify-content: space-between;
+    // transition: all 0.5s ease-in-out;
+    // overflow-x: auto; /* Activer le défilement horizontal si nécessaire */
+    // box-sizing: border-box; /* Inclure les bordures et les marges dans la largeur */
+     font-style: italic;
+     font-family: 'Your Great Font', sans-serif; 
+  }
+
+  .grey-card {
+    background-color: #f0f0f0; /* Choisissez la couleur grise que vous préférez */
+  }
+
+  
+
+
+
+
+  
+  // .app-card-content {
+  //   display: flex;
+  //   justify-content: space-between;
+  // }
+  // .chart-container {
+  //   flex: 1;
+  //   padding: 10px;
+  // }

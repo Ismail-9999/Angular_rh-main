@@ -1,0 +1,21 @@
+.chartContainer canvas {
+    max-height: 250px;
+    width: auto;
+}
+
+.chartContainer{
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+ }
+
+ :root {
+    --primary-color: #1976D2;
+    --primary-lighter: #64B5F6; 
+    --accent-color: #FF4081;
+    --accent-lighter: #FF80AB; 
+    --warn-color: #FFC107;
+    --warn-lighter: #FFE082;  
+  }
+  

@@ -1,0 +1,63 @@
+<div mat-dialog-title>
+    <h1>Nouvelle mission</h1>
+  </div>
+  
+  <style>
+    .content {
+      width: 100%;
+    }
+  
+    .row {
+      display: flex;
+      justify-content: space-between;
+    }
+  
+    .mat-form-field {
+      width: 100%;
+    }
+  </style>
+  <div class="main">
+    <div mat-dialog-content class="content">
+      <div class="row">
+        <mat-form-field appearance="outline">
+          <mat-label>Nom du client </mat-label>
+          <input
+            matInput
+            type="text"
+            [(ngModel)]="clientname"
+            [ngModelOptions]="{ standalone: true }"
+            placeholder="nom du client"
+          />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Adresse du client</mat-label>
+          <input
+            matInput
+            type="text"
+            [(ngModel)]="client_add"
+            [ngModelOptions]="{ standalone: true }"
+            placeholder="adresse du client "
+          />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>ICE</mat-label>
+          <input
+            matInput
+            type="text"
+            [(ngModel)]="client_ice"
+            [ngModelOptions]="{ standalone: true }"
+            placeholder="identifiant commun de l'entreprise"
+          />
+        </mat-form-field>
+      </div>
+  
+      
+    </div>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-raised-button color="primary" (click)="save()">
+      Sauveguarder
+    </button>
+    <button mat-raised-button color="warn" (click)="close()">Annuler</button>
+  </div>
+  

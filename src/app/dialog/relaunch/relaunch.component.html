@@ -1,0 +1,159 @@
+<div mat-dialog-title>
+  <h1>Relance de {{data.prospect.nom}}</h1>
+  <h3 *ngIf="data.prospect.rl_desc ==='Veuillez contacter le prospect.'"
+  [ngStyle]="{'color':'red'  }">
+    {{data.prospect.rl_desc}}
+  </h3>
+  
+</div>
+
+<style>
+  .content {
+    width: 100%;
+  }
+
+  .row {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .mat-form-field {
+    width: 100%;
+  }
+</style>
+
+
+<div class="main">
+  <div mat-dialog-content class="content">
+    <div class="row">
+      <mat-form-field appearance="outline">
+        <mat-label>Disponibilite</mat-label>
+        <input
+          matInput
+          type="text"
+          [(ngModel)]="data.prospect.disponibilite"
+          [ngModelOptions]="{ standalone: true }"
+          placeholder="Nom"
+        />
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Num de Telephone</mat-label>
+        <input
+          matInput
+          type="text"
+          [(ngModel)]="data.prospect.telephone"
+          [ngModelOptions]="{ standalone: true }"
+          placeholder="GSM"
+        />
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Adresses Mail</mat-label>
+        <input
+          matInput
+          type="text"
+          [(ngModel)]="data.prospect.email"
+          [ngModelOptions]="{ standalone: true }"
+          placeholder="EMAIL"
+        />
+      </mat-form-field>
+    </div>
+    <div class="row">
+      <mat-form-field appearance="outline">
+        <mat-label>Status</mat-label>
+        <input
+          matInput
+          type="text"
+          [(ngModel)]="data.prospect.status"
+          [ngModelOptions]="{ standalone: true }"
+          placeholder="Status"
+        />
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Secteur D'activité</mat-label>
+        <input
+          matInput
+          type="text"
+          [(ngModel)]="data.prospect.secteuractivite"
+          [ngModelOptions]="{ standalone: true }"
+          placeholder="Secteur D'activité"
+        />
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Niveau d'études</mat-label>
+        <input
+          matInput
+          type="text"
+          [(ngModel)]="data.prospect.niveauacademique"
+          [ngModelOptions]="{ standalone: true }"
+          placeholder="Secteur D'activité"
+        />
+      </mat-form-field>
+    </div>
+    <!-- <h1>Relance</h1>
+    <div class="row">
+     <mat-form-field appearance="outline">
+       <mat-label>Description</mat-label>
+       <textarea
+         matInput
+         type="text"
+         [(ngModel)]="data.prospect.rl_desc"
+         [ngModelOptions]="{ standalone: true }"
+         placeholder="Nom"
+         style="height: 90px"
+       ></textarea>
+     </mat-form-field>
+     <mat-form-field appearance="outline">
+       <mat-label>Date de mise a jour </mat-label>
+       <input
+         matInput
+         type="date"
+         [(ngModel)]="data.prospect.rl_majcv"
+         [ngModelOptions]="{ standalone: true }"
+         placeholder="Nom"
+       />
+       {{ formatProspectDate(data.prospect.rl_majcv) }}
+     </mat-form-field>
+   </div> -->
+       <h1>Section commantaire</h1>
+     <div class="row">
+      <mat-form-field appearance="outline">
+        <mat-label>Compétence métier</mat-label>
+        <textarea
+          matInput
+          type="text"
+          [(ngModel)]="data.prospect.competencemetier"
+          [ngModelOptions]="{ standalone: true }"
+          placeholder="Nom"
+          style="height: 90px"
+        ></textarea>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Description</mat-label>
+        <textarea
+          matInput
+          type="text"
+          [(ngModel)]="data.prospect.rl_desc"
+          [ngModelOptions]="{ standalone: true }"
+          placeholder="Nom"
+          style="height: 90px"
+        ></textarea>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Date de mise a jour </mat-label>
+        <input
+          matInput
+          type="date"
+          [(ngModel)]="data.prospect.rl_majcv"
+          [ngModelOptions]="{ standalone: true }"
+          placeholder="Nom"
+        />
+        {{ formatProspectDate(data.prospect.rl_majcv) }}
+      </mat-form-field>
+    </div>
+  </div>
+</div>
+
+<div mat-dialog-actions>
+  <button mat-raised-button color="primary" (click)="save()">Sauveguarder</button>
+  <button mat-raised-button color="warn" (click)="close()">Annuler</button>
+</div>

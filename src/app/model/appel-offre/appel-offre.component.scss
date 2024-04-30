@@ -1,0 +1,63 @@
+.action{
+    margin-right: 74%;
+    position: absolute;
+    
+
+}
+// .btn{
+//     margin-left: 74%;
+//     position: relative;
+// }
+
+
+.btn {
+   
+    padding: 10px 20px; // Adjust padding to resize the button
+    font-size: 16px;   // Adjust font size
+    background-color: #3f51b5; // Example background color
+    color: #ffffff;     // Example text color
+    border: none;       // Remove border if not needed
+    cursor: pointer;    // Add cursor pointer for better user experience
+    margin-left: auto;
+    border: 2px solid #ffffff;
+  
+    // Hover styles (optional)
+    &:hover {
+      background-color: #ffffff; // Example hover background color
+      color: #3f51b5;
+      border-color: #3f51b5;
+    }
+  }
+  
+
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  .form-control {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  .btn-primary {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .btn-primary:hover {
+    background-color: #0056b3;
+  }
+  

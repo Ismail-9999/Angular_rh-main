@@ -1,0 +1,163 @@
+<div mat-dialog-title>
+  <h1>Ajouter un Prospect</h1>
+</div>
+
+<style>
+  .content {
+    width: 100%;
+  }
+
+  .row {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .mat-form-field {
+    width: 100%;
+  }
+</style>
+<div class="main">
+  <div mat-dialog-content class="content">
+    <h1>Informations Personnelles</h1>
+    <div class="row">
+      <mat-form-field appearance="outline">
+        <mat-label>Nom</mat-label>
+        <input
+          matInput
+          type="text"
+          [(ngModel)]="nom"
+          [ngModelOptions]="{ standalone: true }"
+          placeholder="Nom du prospect"
+        />
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Carte National</mat-label>
+        <input
+          matInput
+          type="text"
+          [(ngModel)]="cin"
+          [ngModelOptions]="{ standalone: true }"
+          placeholder="CIN"
+        />
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Telephone</mat-label>
+        <input
+          matInput
+          type="text"
+          [(ngModel)]="telephone"
+          [ngModelOptions]="{ standalone: true }"
+          placeholder="GSM"
+        />
+      </mat-form-field>
+    </div>
+    <h1>Formation et Niveau Academique</h1>
+    <div class="row">
+      <mat-form-field appearance="outline">
+        <mat-label>Date de naissance </mat-label>
+        <input
+          matInput
+          type="date"
+          [(ngModel)]="dateNaissance"
+          [ngModelOptions]="{ standalone: true }"
+          placeholder="Date de naissance"
+        />
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Adresse mail</mat-label>
+        <input
+          matInput
+          type="text"
+          [(ngModel)]="email"
+          [ngModelOptions]="{ standalone: true }"
+          placeholder="Email"
+        />
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Formation</mat-label>
+        <input
+          matInput
+          type="text"
+          [(ngModel)]="formation"
+          [ngModelOptions]="{ standalone: true }"
+          placeholder="Formation"
+        />
+      </mat-form-field>
+    </div>
+    <div class="row">
+      <mat-form-field appearance="outline">
+        <mat-label>Secteur D'avtivité</mat-label>
+        <input
+          matInput
+          type="text"
+          [(ngModel)]="secteuractivite"
+          [ngModelOptions]="{ standalone: true }"
+          placeholder="Secteur d'activité"
+        />
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Niveau académique</mat-label>
+        <input
+          matInput
+          type="text"
+          [(ngModel)]="niveauacademique"
+          [ngModelOptions]="{ standalone: true }"
+          placeholder="Niveau académique"
+         />
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Année d'experience</mat-label>
+        <input
+          matInput
+          type="text"
+          [(ngModel)]="anneeexperience"
+          [ngModelOptions]="{ standalone: true }"
+          placeholder="Années d'experiences"
+        />
+      </mat-form-field>
+    </div>
+    <h1>Compétences & Experiences  </h1>
+    <div class="row">
+      <mat-form-field appearance="outline">
+        <mat-label>Compétence métier</mat-label>
+        <textarea
+          matInput
+          type="text"
+          [(ngModel)]="competencemetier"
+          [ngModelOptions]="{ standalone: true }"
+          placeholder="Compétence Métier"
+          style="height: 90px"
+          ></textarea>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Experience professionnelle</mat-label>
+        <textarea
+          matInput
+          type="text"
+          [(ngModel)]="experienceprofessionnelle"
+          [ngModelOptions]="{ standalone: true }"
+          placeholder="Experience Professionnelle"
+          style="height: 90px"
+          ></textarea>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Compétence téchnique</mat-label>
+        <textarea
+          matInput
+          type="text"
+          [(ngModel)]="competencetechnique"
+          [ngModelOptions]="{ standalone: true }"
+          placeholder="Compétence technique"
+          style="height: 90px"
+          ></textarea>
+      </mat-form-field>
+    </div>
+  </div>
+</div>
+
+<div mat-dialog-actions>
+  <button mat-raised-button color="primary" (click)="save()">
+    Sauveguarder
+  </button>
+  <button mat-raised-button color="warn" (click)="close()">Annuler</button>
+</div>

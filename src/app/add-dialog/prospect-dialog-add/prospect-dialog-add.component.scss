@@ -1,0 +1,30 @@
+.client-details {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .info-box {
+    width: 30%;
+    margin: 10px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+   
+  }
+  .edit-icon {
+    margin-left: auto;
+  }
+  
+   
+  .example-button-row {
+      display: table-cell;
+      max-width: 600px;
+      display: flex;
+      gap: 10px; /* Adjust the gap as needed */
+    }
+   
+    .custom-primary-button {
+      background-color: #2196F3; /* Replace with your desired color */
+      color: #ffffff; /* Replace with your desired text color */
+  }
+  
+   

@@ -1,0 +1,70 @@
+<div class="container">
+  <mat-grid-list cols="{{ (cardLayout | async)?.columns }}" rowHeight="200px">
+    <mat-grid-tile
+      [colspan]="(cardLayout | async)?.table?.cols"
+      [rowspan]="(cardLayout | async)?.table?.rows || 9"
+    >
+      <app-card title=" ">
+        <div
+          style="
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+          "
+        >
+          <h1 class="mat-h1">Gestion des Documents</h1>
+        </div>
+
+        <!-- <button mat-icon-button color="primary" class="button"
+          style="float: right"     >
+            <mat-icon>library_add</mat-icon>
+          </button>  -->
+
+        <div class="mat-elevation-z8 small-table">
+          <table
+            mat-table
+            class="full-width-table"
+            [dataSource]="dataSource"
+            matSortActive="id"
+            matSortDirection="asc"
+            matSort
+            aria-label="Elements"
+          >
+            <ng-container matColumnDef="id">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                Id du Fichier
+              </th>
+              <td mat-cell *matCellDef="let row">
+                {{ row.id }}
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="filename">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                Nom du fichier
+              </th>
+              <td mat-cell *matCellDef="let row">{{ row.fileName }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="prospectid">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                Cv du prospect 
+              </th>
+              <td mat-cell *matCellDef="let row">{{ row.prospectName}}</td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+          </table>
+
+          <mat-paginator
+            #paginator
+            [length]="10"
+            [pageIndex]="0"
+            [pageSize]="10"
+          >
+          </mat-paginator>
+        </div>
+      </app-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>

@@ -1,0 +1,89 @@
+<div class="mat-elevation-z8 small-table">
+    <table
+      mat-table
+      class="full-width-table"
+      [dataSource]="dataSource"
+      matSortActive="nom"
+      matSortDirection="asc"
+      matSort
+      aria-label="Elements"
+    >
+      <!-- Nom Column -->
+      <ng-container matColumnDef="nom">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Nom</th>
+        <td mat-cell *matCellDef="let row">
+          <!-- <div class="name-wrapper"> -->
+            {{row.nom}}
+            <!-- <span class="status-text" [ngClass]="getStatusTextClass(row.statut)">{{ row.statut }}</span> -->
+          <!-- </div> -->
+        </td>
+      </ng-container>
+  
+      <!-- Pays de Résidence Column -->
+      <ng-container matColumnDef="pays">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Pays de Résidence</th>
+        <td mat-cell *matCellDef="let row">
+          {{ row.pays }}
+        </td>
+      </ng-container>
+
+      <!-- Téléphone Column -->
+      <ng-container matColumnDef="telephone">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Téléphone</th>
+        <td mat-cell *matCellDef="let row">
+          {{ row.telephone }}
+        </td>
+      </ng-container>
+
+      <!-- Secteur d'Activité Column -->
+      <ng-container matColumnDef="secteur">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Secteur d'Activité</th>
+        <td mat-cell *matCellDef="let row">
+          {{ row.secteur }}
+        </td>
+      </ng-container>
+
+      <!-- Canal Column -->
+      <ng-container matColumnDef="canal">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Canal</th>
+        <td mat-cell *matCellDef="let row">
+          {{ row.canal }}
+        </td>
+      </ng-container>
+
+      <!-- Canal Interlocuteur Column -->
+      <ng-container matColumnDef="canalInterlocuteur">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Canal Interlocuteur</th>
+        <td mat-cell *matCellDef="let row">
+          {{ row.canalInterlocuteur }}
+        </td>
+      </ng-container>
+      
+      <!-- Action Column -->
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Action</th>
+        <td mat-cell *matCellDef="let row">
+          <button mat-icon-button color="primary" (click)="OpenEditDialog(row.idtiers)">
+            <mat-icon>hourglass_empty</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+
+    <div class="canal">
+        <mat-card class="grey-card" *ngIf="dataSource.data.length === 0">
+          <mat-card-content>
+            <mat-icon>info</mat-icon>
+            <p>Aucun résultat trouvé.</p>
+          </mat-card-content>
+        </mat-card>
+      </div>
+      
+  
+    <mat-paginator #paginator [length]="2"  [pageIndex]="0" [pageSize]="2">
+    </mat-paginator>
+  </div>
+  

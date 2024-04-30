@@ -1,0 +1,63 @@
+<div mat-dialog-title>
+  <h1>Filtre de colonnes</h1>
+</div>
+
+<style>
+  .content {
+    width: 100%;
+  }
+
+  .row {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .mat-form-field {
+    width: 100%;
+  }
+</style>
+<div class="main">
+  <div mat-dialog-content class="content">
+     <div class="row">
+      <mat-form-field>
+        <mat-label>Status</mat-label>
+        <mat-select [(ngModel)]="data.columnFilters.status">
+          <mat-option *ngFor="let value of data.statusValues" [value]="value">
+            {{ value }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Secteur d'activité</mat-label>
+        <mat-select [(ngModel)]="data.columnFilters.secteuractivite">
+          <mat-option *ngFor="let value of data.secteurValues" [value]="value">
+            {{ value }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Niveau d'études</mat-label>
+        <mat-select [(ngModel)]="data.columnFilters.niveauacademique">
+          <mat-option *ngFor="let value of data.niveauValues" [value]="value">
+            {{ value }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="row">
+        <mat-form-field>
+            <mat-label>Année d'experience</mat-label>
+            <mat-select [(ngModel)]="data.columnFilters.anneeexperience">
+              <mat-option *ngFor="let value of data.anexpeienceValues" [value]="value">
+                {{ value }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+    </div>
+  </div>
+</div>
+
+<div mat-dialog-actions>
+  <button mat-button (click)="applyFilter()">Appliquer</button>
+  <button mat-button (click)="onNoClick()">Annuler</button>
+</div>

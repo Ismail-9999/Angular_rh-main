@@ -1,0 +1,42 @@
+<h2 mat-dialog-title>Associer Missions</h2>
+<mat-dialog-content class="dialog-content">
+  <mat-form-field class="form-field large-form-field">
+    <mat-label>Consultant ID</mat-label>
+    <input
+      matInput
+      [(ngModel)]="data.consultant.consultantid"
+      type="number"
+       required
+    />
+  </mat-form-field>
+  <mat-form-field class="form-field large-form-field">
+    <mat-label>Mission ID</mat-label>
+    <input
+      matInput
+      type="number"
+      [(ngModel)]="missionid"
+      required
+      (ngModelChange)="fetchMissiondes()"
+    />
+  </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-content class="dialog-content">
+  <mat-form-field class="form-field">
+    <mat-label>Nom Consultant </mat-label>
+    <input matInput [value]="data?.consultant?.consultantname" disabled />
+  </mat-form-field>
+  <mat-form-field class="form-field">
+    <mat-label>Nom Consultant </mat-label>
+    <input matInput [(ngModel)]="missionname.Designation" disabled />
+  </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions class="actions">
+  &nbsp;&nbsp;&nbsp;&nbsp;<button
+    mat-button
+    class="custom-primary-button"
+    (click)="addConsultantToSalarie(data.consultant.consultantid, missionid)"
+  >
+    Ajouter
+  </button>
+  &nbsp;<button mat-button class="custom-secondary-button" (click)="close()"> Annuler </button>
+</mat-dialog-actions>

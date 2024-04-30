@@ -1,0 +1,208 @@
+<mat-card class="main-card">
+  <div style="display: flex; align-items: center;">
+    <button mat-icon-button (click)="goBack()">
+      <mat-icon>keyboard_arrow_left</mat-icon>  <!--<span style="margin-left: 4px;">Retour</span> -->
+      <span style="margin-left: 4px;" > </span>
+    </button>
+  </div>
+  <mat-card-header>
+    <mat-card-title>
+      <div class="header-container" *ngIf="prospect">
+        <h2 style="display: inline-block">
+          Details: {{ prospect.nom }}
+        </h2>
+        
+            <span class="status-label" [ngClass]="getStatusClass()" [style.color]="prospect.status === 'Consultant' ? 'green' : 
+            prospect.status === 'Prospect' ? 'blue': 'grey'">
+              {{ prospect.status }}
+            </span> 
+
+        <!-- <div *ngIf="prospect"
+          style="
+            display: inline-block;
+            border: 2px solid #3f51b5;
+            border-radius: 3px;
+            padding: 5px;
+            background-color: #3f51b5;
+          "
+        >
+          <h2
+            style="
+              display: inline-block;
+              margin: 0;
+              color: white;
+              position: fixed;
+            "
+          > {{ prospect.nom }}
+           </h2>
+        </div> -->
+      </div>
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content class="dashboard-card-content">
+    <title>Details</title>
+
+    <div class="main">
+      <div class="client-details" *ngIf="prospect">
+        <!-- Information Box 1 -->
+        <div class="info-box">
+          <h3>
+            <span><strong>Nom du prospect</strong></span>
+          </h3>
+          <p>{{ prospect?.nom }}</p>
+        </div>
+
+        <!-- Information Box 2 -->
+        <div class="info-box">
+          <h3><strong>Date de Naissance</strong></h3>
+          <p>
+            {{
+              prospect.dateNaissance == null
+                ? "Non renseigné"
+                : (prospect.dateNaissance | date : "dd/MM/yyyy")
+            }}
+          </p>
+        </div>
+        <!-- Information Box 3 -->
+        <div class="info-box">
+          <h3><strong>Carte nationnal d'identité</strong></h3>
+          <p>{{ prospect.cin == "" ? "Non renseigné" : prospect.cin }}</p>
+        </div>
+
+        <!-- Information Box 3 -->
+        <div class="info-box">
+          <h3><strong>Numéro de telephone</strong></h3>
+          <p>0{{ prospect.telephone }}</p>
+        </div>
+
+        <!-- Information Box 3 -->
+        <div class="info-box">
+          <h3><strong>Adresse mail</strong></h3>
+          <p>{{ prospect.email == null ? "Non renseigné" : prospect.email }}</p>
+        </div>
+
+        <!-- Information Box 3 -->
+        <div class="info-box">
+          <h3><strong>Secteur D'activité</strong></h3>
+          <p>
+            {{
+              prospect.secteuractivite == null
+                ? "Non renseigné"
+                : prospect.secteuractivite
+            }}
+          </p>
+        </div>
+
+        <!-- Information Box 3 -->
+        <div class="info-box">
+          <h3><strong>Niveau d'études</strong></h3>
+          <p>
+            {{
+              prospect.niveauacademique == ""
+                ? "Non renseigné"
+                : prospect.niveauacademique
+            }}
+          </p>
+        </div>
+
+        <!-- Information Box 3 -->
+        <div class="info-box">
+          <h3><strong>Années d'experience</strong></h3>
+          <p>
+            {{
+              prospect.anneeexperience == ""
+                ? "Non renseigné"
+                : prospect.anneeexperience
+            }}
+          </p>
+        </div>
+
+        <div class="info-box">
+          <h3><strong>Compétences métier</strong></h3>
+          <p>
+            {{
+              prospect.competencemetier == ""
+                ? "Non renseigné"
+                : prospect.competencemetier
+            }}
+          </p>
+        </div>
+
+        <!-- Information Box 3 -->
+        <div class="info-box">
+          <h3><strong>Formation et certification</strong></h3>
+          <p>
+            {{
+              prospect.formation == "" ? "Non renseigné" : prospect.formation
+            }}
+          </p>
+        </div>
+
+        <div class="info-box">
+          <h3><strong>Experience professionnel</strong></h3>
+          <p>
+            {{
+              prospect.experienceprofessionnelle == ""
+                ? "Non renseigné"
+                : prospect.experienceprofessionnelle
+            }}
+          </p>
+        </div>
+
+        <!-- Information Box 3 -->
+        <div class="info-box">
+          <h3><strong>Compétences Techniques</strong></h3>
+          <p>
+            {{
+              prospect.competencetechnique == ""
+                ? "Non renseigné"
+                : prospect.competencetechnique
+            }}
+          </p>
+        </div>
+
+        <div class="info-box">
+          <h3><strong>Mot Clé</strong></h3>
+          <p>{{ prospect.motcle == "" ? "Non renseigné" : prospect.motcle }}</p>
+        </div>
+
+        <div class="info-box">
+          <h3><strong>Langues</strong></h3>
+          <p>{{ prospect.langue == "" ? "Non renseigné" : prospect.langue }}</p>
+        </div>
+
+        <div class="info-box">
+          <h3><strong>Dernière communication</strong></h3>
+          <p>
+            {{
+              prospect.majcv == ""
+                ? "Non renseigné"
+                : (prospect.majcv | date : "dd/yyyy")
+            }}
+          </p>
+        </div>
+      </div>
+
+      &nbsp;
+      <div class="example-button-row">
+        <button mat-raised-button (click)="OpenEditDialog()" color="primary">
+          Modifier
+        </button>
+        <button mat-raised-button color="warn" (click)="generate()">
+          Génerer CV
+        </button>
+     
+      </div>
+      <div class="client-details" *ngIf="prospect">
+        <!-- Information Box 1 -->
+        <div class="info-box">
+          <h3>  Télecharger le CV du prospect</h3>
+          <input  type="file" (change)="onFileSelected($event)" />
+          <button mat-raised-button color="warn" (click)="uploadFile()">
+            Télecharger le CV
+          </button>
+        </div>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>

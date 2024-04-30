@@ -1,0 +1,69 @@
+<div class="container">
+  <h1 class="mat-h1">Nouvel appel d'offres</h1>
+  <form class="form-container" #appelOffreForm="ngForm" (ngSubmit)="onSubmit(appelOffreForm)">
+    <!-- Informations générales -->
+    <div class="form-group">
+      <label for="numeroDemande">Numéro de demande</label>
+      <input type="text" id="numeroDemande" name="numeroDemande" class="form-control" ngModel required>
+    </div>
+    <div class="form-group">
+      <label for="statut">Statut</label>
+      <input type="text" id="statut" name="statut" class="form-control" ngModel required>
+    </div>
+    <div class="form-group">
+      <label for="prenom">Prénom</label>
+      <input type="text" id="prenom" name="prenom" class="form-control" ngModel required>
+    </div>
+    <div class="form-group">
+      <label for="nom">Nom</label>
+      <input type="text" id="nom" name="nom" class="form-control" ngModel required>
+    </div>
+    <div class="form-group">
+      <label for="dateCreation">Date de création</label>
+      <input type="date" id="dateCreation" name="dateCreation" class="form-control" ngModel required>
+    </div>
+
+    <!-- Détail de la demande -->
+    <div class="form-group">
+      <label for="intitule">Intitulé</label>
+      <input type="text" id="intitule" name="intitule" class="form-control" ngModel required>
+    </div>
+    <div class="form-group">
+      <label for="missionGenerale">Mission générale</label>
+      <textarea id="missionGenerale" name="missionGenerale" class="form-control" ngModel required></textarea>
+    </div>
+    <div class="form-group">
+      <label for="datePublication">Date de publication</label>
+      <input type="date" id="datePublication" name="datePublication" class="form-control" ngModel required>
+    </div>
+    <div class="form-group">
+      <label for="dateDemarrage">Date de démarrage de projet</label>
+      <input type="date" id="dateDemarrage" name="dateDemarrage" class="form-control" ngModel required>
+    </div>
+    <div class="form-group">
+      <label for="dateLivraison">Date de livraison</label>
+      <input type="date" id="dateLivraison" name="dateLivraison" class="form-control" ngModel required>
+    </div>
+    <div class="form-group">
+      <label for="fournisseurs">Fournisseurs</label>
+      <input type="text" id="fournisseurs" name="fournisseurs" class="form-control" ngModel required>
+    </div>
+    <div class="form-group">
+      <label for="budget">Budget</label>
+      <input type="number" id="budget" name="budget" class="form-control" ngModel required>
+    </div>
+    <div class="form-group">
+      <label for="remarques">Remarques</label>
+      <textarea id="remarques" name="remarques" class="form-control" ngModel required></textarea>
+    </div> 
+
+    <!-- Historique -->
+    <div class="form-group">
+      <label for="commentaire">Commentaire</label>
+      <textarea id="commentaire" name="commentaire" class="form-control" ngModel required></textarea>
+    </div>
+    
+    <button type="submit" class="btn btn-primary">Soumettre</button>
+    <button type="button" class="btn btn-default" style="margin-left: 400px;">Enregistrer le brouillon</button>
+  </form>
+</div>

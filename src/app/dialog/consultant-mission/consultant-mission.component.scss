@@ -1,0 +1,33 @@
+/* your-dialog.component.css */
+.dialog-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .form-field {
+    width: 45%; /* Adjust the width as needed */
+  }
+  
+  .form-field label {
+    text-align: right;
+    margin-right: 8px; /* Adjust the margin as needed */
+  }
+  
+  .actions {
+    margin-top: 16px; /* Add margin for spacing */
+  }
+
+ /* your-dialog.component.css */
+.custom-primary-button {
+    background-color: #007bff; /* Change to your desired color */
+    color: white; /* Change to your desired text color */
+  }
+  
+  .custom-secondary-button {
+    background-color: #ff5722; /* Change to your desired color */
+    color: white; /* Change to your desired text color */
+  }
+  
+  

@@ -1,0 +1,28 @@
+<div class="container">
+    <mat-grid-list cols="{{ (cardLayout | async)?.columns }}" rowHeight="200px">
+      <mat-grid-tile
+        [colspan]="(cardLayout | async)?.table?.cols"
+        [rowspan]="(cardLayout | async)?.table?.rows || 9"
+      >
+        <app-card title=" ">
+          <div
+            style="
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+            "
+          >
+            <h1 class="mat-h1">Listes des Missions </h1>
+          </div>
+  
+          <button mat-icon-button color="primary" class="button"
+          style="float: right" (click)="openDialog()" >
+            <mat-icon>library_add</mat-icon>
+          </button>
+          
+         &nbsp;
+         <app-mission-data></app-mission-data>
+        </app-card>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
