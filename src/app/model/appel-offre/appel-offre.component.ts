@@ -5,6 +5,7 @@ import { NgForm } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { map } from 'rxjs';
+import { environmentdev } from '../../../environments/environment.development';
 
 
 interface AppelOffre {
@@ -45,6 +46,8 @@ export class AppelOffreComponent {
   )
 {}
 
+baseUrl = environmentdev.baseUrl;
+//prodUrl = environment.prodUrl;
 
 nouvelAppelOffre: AppelOffre = {
   numeroDemande: '',
@@ -91,16 +94,16 @@ nouvelAppelOffre: AppelOffre = {
 currentID = '';
 data: any;
 ngOnInit() {
-  console.log('Appel d Offres data:', this.data);
+  //console.log('Appel d Offres data:', this.data);
 }
 
 
 onSubmit(appelOffreForm: NgForm): void {
   if (appelOffreForm.valid) {
     // Logique de soumission du formulaire
-    console.log('Formulaire valide:', this.nouvelAppelOffre);
+    //console.log('Formulaire valide:', this.nouvelAppelOffre);
   } else {
-    console.log('Formulaire invalide. Veuillez vérifier les champs.');
+    //console.log('Formulaire invalide. Veuillez vérifier les champs.');
   }
 }
 
@@ -134,12 +137,15 @@ register() {
 
   this.http
     // .post('https://back-end-rh.onrender.com/api/offres/add', bodyData, {
-      .post('http://localhost:8084/api/offres/add', bodyData, {
+      
+    //  .post(`${this.prodUrl}api/offres/add`, bodyData, {
+
+        .post(`${this.baseUrl}api/offres/add`, bodyData, {
       responseType: 'text',
     })
     .subscribe((resultData: any) => {
-      console.log(resultData);
-      this.snackBar.open('Appel d Offres updated successfully', 'Close', {
+      //console.log(resultData);
+      this.snackBar.open('Appel d Offres mis à jour avec succès', 'Fermer', {
         duration: 3000,
       });
       //this.dialogRef.close(bodyData);
@@ -151,7 +157,7 @@ save() {
     this.register();
  
   } else {
-    console.log('Erreur insertion');
+    //console.log('Erreur insertion');
   }
 }
 

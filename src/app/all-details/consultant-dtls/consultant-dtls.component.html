@@ -13,7 +13,7 @@
         <!-- <span class="status-label" [ngClass]="getStatusClass()">
           {{ consultant?.status }}
         </span> -->
-        <span class="status-label" [ngClass]="getStatusClass()" [style.color]="consultant.status === 'Consultant' ? 'green' : 
+        <span class="status-label" [ngClass]="getStatusClass()"  [style.color]="consultant.status === 'Consultant' ? 'green' : 
             consultant.status === 'consultant' ? 'blue': 'red'">
               {{ consultant.status }}
             </span> 
@@ -116,9 +116,12 @@
           (click)="openDialog(consultant)" 
        > Associer mission
         </button>
-        <button mat-raised-button *ngIf="consultant.status !== 'Terminer'"
-         style="background-color: green; color: white;" (click)="openDialog3()">
+        <button mat-raised-button *ngIf="consultant && consultant.status !== 'Terminer'"
+         style="background-color: green; color: white;" (click)="closeConsultant(consultant.consultantid)">
           Clôturer</button>
+          <button mat-raised-button *ngIf="consultant && consultant.status == 'Terminer'"
+         style="background-color: green; color: white;" (click)="reopenConsultant(consultant.consultantid)">
+          Réouvrir</button>
       </div>
     </div>
   </mat-card-content>

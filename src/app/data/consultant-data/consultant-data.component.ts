@@ -12,6 +12,8 @@ import { FormControl } from '@angular/forms';
 import { MatInput } from '@angular/material/input';
 import { AuthServiceService } from '../../Auth/auth-service.service';
 import { DataService } from '../../cache-data/dataService.service';
+import {  environmentdev } from '../../../environments/environment.development';
+import { ConfirmationModalComponent } from '../../confirmation-modal/confirmation-modal.component';
 
 @Component({
   selector: 'app-consultant-data',
@@ -50,16 +52,19 @@ export class ConsultantDataComponent {
   consultant: any;
   filter = new FormControl('');
 
+  baseUrl= environmentdev.baseUrl;
+  //prodUrl = environment.prodUrl;
+
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.data = this.ConsultantArray ;
   }
 
   ngAfterViewChecked() {
-    console.log('Change detection ran');
+    //console.log('Change detection ran');
   }
   ngOnInit() {
-    console.log('ngOnInit called');
+    //console.log('ngOnInit called');
     this.getAllconsultant1();
     this.filter.valueChanges.subscribe((filterValue) => {
       filterValue = (filterValue ?? '').trim(); // Remove whitespace
@@ -69,11 +74,12 @@ export class ConsultantDataComponent {
 
   ConsultantArray: any[] = [];
 
-  getAllconsultant1() {console.log('Fetching consultant data...');
+  getAllconsultant1() {
+    //console.log('Fetching consultant data...');
   this.dataService.getAllconsultant1().subscribe((resudata: any) => {
-    console.log('Consultant data received:', resudata);
+    //console.log('Consultant data received:', resudata);
 
-      console.log(resudata);
+      //console.log(resudata);
       this.ConsultantArray = resudata;
       this.dataSource.data = this.ConsultantArray ;
       // this.dataSource = new MatTableDataSource(resudata);
@@ -82,7 +88,72 @@ export class ConsultantDataComponent {
     });
   }
 
-  // getAllconsultant() {
+  applyFilter(filterValue: string) {
+    if (this.dataSource) {
+      // Check if this.dataSource is defined
+      filterValue = filterValue.trim().toLowerCase();
+      this.dataSource.filter = filterValue;
+    }
+  }
+
+  setDelete(data: any) {
+    const dialogRef = this._dialog.open(ConfirmationModalComponent, {
+      width : '600px',
+      data : { message : `Êtes vous sûrs de vouloir supprimer ${data.consultantname} ?` }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if(result) {
+        const storedToken = localStorage.getItem('accessToken');
+        this.auth.setAccessToken(storedToken);
+        const headers = new HttpHeaders({
+        Authorization: `Bearer ${storedToken}`,
+    });
+
+    this.http
+      .delete(
+        // 'https://back-end-rh.onrender.com/api/consultant/delete' + '/' + data.consultantid,
+        // `${this.prodUrl}api/consultant/delete` + '/' + data.consultantid,
+        `${this.baseUrl}api/consultant/delete` + '/' + data.consultantid,
+        { headers,
+          responseType: 'text' }
+      )
+      .subscribe((resultData: any) => {
+        //console.log(resultData);
+        this.dataService.deleteCacheEntry('consultant');
+        this.snackBar.open('Consultant supprimé', 'Fermer', {
+          duration: 3000,
+        });
+        this.getAllconsultant1();
+      });
+      }
+    });
+    
+  }
+
+  openDialog(consultant: any) {
+    const dialogRef = this._dialog.open(ConsultantMissionComponent, {
+      width: '900px',
+      data: { parent: this, consultant },
+    });
+
+    dialogRef.afterClosed().subscribe((consultantID: number) => {
+      //console.log('Dialog closed with result:', consultantID);
+      if (consultantID !== undefined && consultantID !== null) {
+        this.router
+          .navigateByUrl('/', { skipLocationChange: true })
+          .then(() => {
+            this.router.navigate(['/consultant', consultantID]);
+          });
+      } else {
+        //console.log('Dialog closed without consultantId');
+      }
+    });
+  }
+}
+
+
+
+ // getAllconsultant() {
   //   const storedToken = localStorage.getItem('accessToken');
   //   this.auth.setAccessToken(storedToken);
   //     const headers = new HttpHeaders({
@@ -98,47 +169,3 @@ export class ConsultantDataComponent {
   //       this.dataSource.paginator = this.paginator;
   //     });
   // }
-  applyFilter(filterValue: string) {
-    if (this.dataSource) {
-      // Check if this.dataSource is defined
-      filterValue = filterValue.trim().toLowerCase();
-      this.dataSource.filter = filterValue;
-    }
-  }
-
-  setDelete(data: any) {
-    this.http
-      .delete(
-        // 'https://back-end-rh.onrender.com/api/consultant/delete' + '/' + data.consultantid,
-        'http://localhost:8084/api/consultant/delete' + '/' + data.consultantid,
-        { responseType: 'text' }
-      )
-      .subscribe((resultData: any) => {
-        console.log(resultData);
-        this.snackBar.open('Consultant supprimer', 'Fermer', {
-          duration: 3000,
-        });
-        this.getAllconsultant1();
-      });
-  }
-
-  openDialog(consultant: any) {
-    const dialogRef = this._dialog.open(ConsultantMissionComponent, {
-      width: '900px',
-      data: { parent: this, consultant },
-    });
-
-    dialogRef.afterClosed().subscribe((consultantID: number) => {
-      console.log('Dialog closed with result:', consultantID);
-      if (consultantID !== undefined && consultantID !== null) {
-        this.router
-          .navigateByUrl('/', { skipLocationChange: true })
-          .then(() => {
-            this.router.navigate(['/consultant', consultantID]);
-          });
-      } else {
-        console.log('Dialog closed without consultantId');
-      }
-    });
-  }
-}

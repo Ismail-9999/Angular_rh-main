@@ -4,6 +4,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ConsultantComponent } from '../../model/consultant/consultant.component';
 import { AuthServiceService } from '../../Auth/auth-service.service';
+import { environmentdev } from '../../../environments/environment.development';
 
 @Component({
   selector: 'app-edit-consultant',
@@ -13,6 +14,9 @@ import { AuthServiceService } from '../../Auth/auth-service.service';
 export class EditConsultantComponent {
 
   private apiUrl='http://localhost:8084/api/consultant/update';
+
+  baseUrl = environmentdev.baseUrl;
+  //prodUrl = environment.prodUrl;
 
   constructor(private http : HttpClient,
               private snackBar : MatSnackBar,
@@ -38,7 +42,7 @@ export class EditConsultantComponent {
 
 
   ngOnInit() {
-    console.log('Consultant data:', this.data.consultant);
+    //console.log('Consultant data:', this.data.consultant);
   }
 
   save() : void {
@@ -63,13 +67,15 @@ export class EditConsultantComponent {
     });
 
     this.http
-    .put(this.apiUrl, consultantData, {responseType : 'text', headers})
+    //.put(`${this.prodUrl}api/consultant/update`, consultantData, {responseType : 'text', headers})
+    
+    .put(`${this.baseUrl}api/consultant/update`, consultantData, {responseType : 'text', headers})
     .subscribe({
       next: (response) =>{
-        console.log('Consultant updated successfully:', response);
+        //console.log('Consultant updated successfully:', response);
         this.data.parent.updateData(this.data.consultant);
         this.dialogRef.close(this.data.consultant);
-        this.snackBar.open('Consultant mis à jour avec succès' , 'Close', {
+        this.snackBar.open('Consultant mis à jour avec succès' , 'Fermer', {
           duration : 3000,
         });
       },

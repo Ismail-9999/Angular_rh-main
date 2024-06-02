@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core'; 
 import { Router, UrlTree } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { environmentdev } from '../../environments/environment.development';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,9 @@ export class AuthServiceService {
 
   }
 
+  //prodUrl = environment.prodUrl;
+  baseUrl = environmentdev.baseUrl
+  
   private accessTokenSubject = new BehaviorSubject<string | null>(null);
   private isAuthenticatedSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
@@ -34,13 +38,13 @@ export class AuthServiceService {
   }
 
   logout(): void {
-    console.log('Logging out...');
+    //console.log('Logging out...');
     this.setAuthenticated(false);
     this.setAccessToken(null);
     this.isAuthenticatedSubject.next(false);
     this.accessTokenSubject.next(null);
     localStorage.removeItem('accessToken');
-    console.log('Logout complete.');
+    //console.log('Logout complete.');
   }
 
   createLoginUrl(): UrlTree {

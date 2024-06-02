@@ -26,10 +26,10 @@ constructor(private auth: AuthServiceService,
     );
 
     LoginOut() {
-      console.log('LoginOut method called');
+      //console.log('LoginOut method called');
       this.auth.logout();
       this.router.navigateByUrl('/login');
   
-      console.log('AccesLogout', this.auth.getAccessToken());
+      //console.log('AccesLogout', this.auth.getAccessToken());
     }
 }

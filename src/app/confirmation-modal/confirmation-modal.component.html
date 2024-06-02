@@ -1,0 +1,40 @@
+<!-- <div class="modal-header">
+    <h4 class="modal-title">Confirmation</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="dismiss()"></button>
+  </div>
+  <div class="modal-body">
+    <p>{{ message }}</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary" (click)="confirm()">Confirmer</button>
+    <button type="button" class="btn btn-secondary" (click)="dismiss()">Annuler</button>
+  </div> -->
+  
+  <!-- <div class="modal-header">
+    <h4 class="modal-title">Confirmation</h4>
+    <button type="button" class="close" aria-label="Close" (click)="close('cancel')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p>{{ message }}</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary" (click)="close('confirm')">Confirmer</button>
+    <button type="button" class="btn btn-secondary" (click)="close('cancel')">Annuler</button>
+  </div> -->
+  
+
+  <h1 mat-dialog-title>Confirmation</h1>
+    <div mat-dialog-content>
+      <p>{{ data.message }}</p>
+    </div>
+    <div mat-dialog-actions>
+        <button mat-button class="cancel-button" (click)="onCancel()">Annuler</button>
+        <button mat-button class="confirm-button" color="primary" (click)="onConfirm()">Confirmer</button>
+    </div>
+
+
+    
+
+   

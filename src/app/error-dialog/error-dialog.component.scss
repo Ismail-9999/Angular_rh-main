@@ -1,0 +1,19 @@
+/* error-dialog.component.css */
+.error-dialog {
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #f8d7da; /* Couleur de fond rouge clair */
+    color: #721c24; /* Couleur du texte rouge foncé */
+    border: 1px solid #f5c6cb; /* Bordure rouge */
+  }
+  
+  .error-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .error-message {
+    font-size: 18px;
+  }
+  

@@ -2,13 +2,17 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, of, tap } from 'rxjs';
 import { AuthServiceService } from '../Auth/auth-service.service';
+import { environmentdev } from '../../environments/environment.development';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProspectdetailsService {
   // private baseUrl = 'https://back-end-rh.onrender.com/api';
-  private baseUrl = 'http://localhost:8084/api';
+  private baseUrl1 = 'http://localhost:8084/api';
+  baseUrl = environmentdev.baseUrl;
+
+ // prodUrl = environment.prodUrl;
 
   private cache: Map<number, any> = new Map();
 
@@ -27,7 +31,7 @@ constructor(private http: HttpClient ,  private auth:AuthServiceService)  { }
   const cachedData = this.cache.get(idtiers);
 
   if (cachedData) {
-    console.log('Prospect details in cache', cachedData);
+    //console.log('Prospect details in cache', cachedData);
     return of (cachedData);
   }
 
@@ -36,11 +40,12 @@ constructor(private http: HttpClient ,  private auth:AuthServiceService)  { }
   const headers = new HttpHeaders({
     Authorization: `Bearer ${this.auth.getAccessToken()}`,
   });
-  const url = `${this.baseUrl}/prospect/${idtiers}`;
+  // const url = `${this.prodUrl}api/prospect/${idtiers}`;
+  const url = `${this.baseUrl}api/prospect/${idtiers}`;
 
   return this.http.get(url, { headers}).pipe(
     tap((response) => {
-      console.log('Prospect details from API', response);
+      //console.log('Prospect details from API', response);
       this.cache.set(idtiers, response);
     }),
     catchError(this.handleError<any>('getProspectdetails'))

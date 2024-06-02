@@ -21,7 +21,7 @@ export class LoginPageComponent {
   ) {}
 
   ngOnInit() {
-    console.log('LoginPageComponent initialized');
+    //console.log('LoginPageComponent initialized');
   }
 
   username: string = '';
@@ -33,15 +33,15 @@ export class LoginPageComponent {
 
     this.loginserv.getUser(user, pass).subscribe({
       next: (data) => {
-        console.log('first token :', data )
+        //console.log('first token :', data )
         this.loginserv.loadProfile(data);
         // console.log('Token' , data)
 
         this.router.navigateByUrl('/dash');
-        console.log('Token Auth', this.authService.getAccessToken());
+       // console.log('Token Auth', this.authService.getAccessToken());
       },
       error: (err) => {
-        console.log(err);
+        //console.log(err);
       },
     });
   }

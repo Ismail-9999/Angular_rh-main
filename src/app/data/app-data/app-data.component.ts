@@ -7,6 +7,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { map } from 'rxjs';
 import { AuthServiceService } from '../../Auth/auth-service.service';
+import { environmentdev } from '../../../environments/environment.development';
 
 @Component({
   selector: 'app-app-data',
@@ -25,6 +26,9 @@ export class AppDataComponent {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   dataSource = new MatTableDataSource<any>();
+
+  baseUrl = environmentdev.baseUrl;
+  //prodUrl = environment.prodUrl;
 
 
   AppOffreArray : any []= [] ;
@@ -46,16 +50,18 @@ export class AppDataComponent {
   
 
   getAllAppOffre (){
-    console.log('Fetching data...');
+    //console.log('Fetching data...');
     const storedToken = localStorage.getItem('accessToken');
     this.auth.setAccessToken(storedToken);
       const headers = new HttpHeaders({
       Authorization: `Bearer ${this.auth.getAccessToken()}`,
     });
     this.http
-    .get('http://localhost:8084/api/offres/show',{headers}).subscribe((resudata : any)=>{
-      console.log('Data fetched successfully:', resudata);
-      console.log(resudata);
+    // .get(`${this.prodUrl}api/offres/show`,{headers}).subscribe((resudata : any)=>{
+      
+      .get(`${this.baseUrl}api/offres/show`,{headers}).subscribe((resudata : any)=>{
+      //console.log('Data fetched successfully:', resudata);
+      //console.log(resudata);
       this.AppOffreArray = resudata ;
       this.dataSource = new MatTableDataSource(resudata);
       this.dataSource.paginator = this.paginator;

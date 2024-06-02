@@ -1,9 +1,21 @@
  
+.chartContainer canvas {
+    max-height: 250px;
+    width: auto;
+}
+
 
 .chartContainer{
-    height: 90%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+}
+
+.chart {
+    max-width: 100%; /* Limitez la largeur maximale à 100% */
+    height: auto; /* Hauteur automatique pour maintenir le rapport largeur/hauteur */
+    // width: auto;
+    // max-height: 100%;
 }

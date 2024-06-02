@@ -1,9 +1,11 @@
 import { formatDate } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { environmentdev } from '../../../environments/environment.development';
+import { AuthServiceService } from '../../Auth/auth-service.service';
 
 @Component({
   selector: 'app-relaunch',
@@ -14,10 +16,13 @@ export class RelaunchComponent {
   // private apiUrl = 'https://back-end-rh.onrender.com/api/prospect/update';
   private apiUrl = 'http://localhost:8084/api/prospect/update';
 
+  baseUrl = environmentdev.baseUrl;
+  //prodUrl = environment.prodUrl;
+
   constructor(
     public dialogRef: MatDialogRef<RelaunchComponent>,
     private http: HttpClient ,
-    @Inject(MAT_DIALOG_DATA) public data: any, private snackBar: MatSnackBar
+    @Inject(MAT_DIALOG_DATA) public data: any, private snackBar: MatSnackBar,  private auth:AuthServiceService
   ){
     this.data.prospect;
   }
@@ -73,16 +78,22 @@ save(){
     rl_desc : this.data.prospect.rl_desc,
     rl_majcv:this.data.prospect.rl_majcv
   };
+  const storedToken = localStorage.getItem('accessToken');
+  this.auth.setAccessToken(storedToken);
+  const headers = new HttpHeaders({
+    Authorization: `Bearer ${this.auth.getAccessToken()}`,
+  });
+
 
   this.http
-  .put(this.apiUrl, prospectData, { responseType: 'text' })
+  .put(`${this.baseUrl}api/prospect/update`, prospectData, { responseType: 'text' , headers})
   .subscribe({
     next: (response) => {
       // console.log('Prospect updated successfully:', response);
       this.data.parent.updateData(this.data.prospect);
-      // console.log('Updated Prospect Data:', this.data.prospect);
+      console.log('Updated Prospect Data:', this.data.prospect);
       this.dialogRef.close(this.data.prospect);
-      this.snackBar.open('Relance effectuée', 'Close', {
+      this.snackBar.open('Relance effectuée', 'Fermer', {
         duration: 3000,
       });
     },

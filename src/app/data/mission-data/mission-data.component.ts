@@ -59,7 +59,7 @@ export class MissionDataComponent {
 
   getAllmission1() {
     this.dataService.getAllmission().subscribe((resudata: any) => {
-      console.log(resudata);
+      //console.log(resudata);
       this.MissionArray = resudata;
       this.dataSource = new MatTableDataSource(resudata);
       this.dataSource.paginator = this.paginator;

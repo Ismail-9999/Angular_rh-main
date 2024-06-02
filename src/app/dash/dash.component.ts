@@ -9,6 +9,7 @@ import { ProspectdetailsService } from '../details-service/prospectdetails.servi
 import { AuthServiceService } from '../Auth/auth-service.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
+import { DataService } from '../cache-data/dataService.service';
 
 @Component({
   selector: 'app-dash',
@@ -26,7 +27,8 @@ export class DashComponent implements OnInit {
     private route: ActivatedRoute
     , public dialog: MatDialog ,
     private prs: ProspectdetailsService,
-    private auth: AuthServiceService
+    private auth: AuthServiceService,
+    private dataservice : DataService
     ){
   }
   
@@ -35,11 +37,17 @@ export class DashComponent implements OnInit {
   dataSource = new MatTableDataSource<any>(); 
 
   ngOnInit(): void {
-    // Exemple de données
+     
+      this.dataservice.getAllClient().subscribe(()=>{});
+      this.dataservice.getAllconsultant1().subscribe(()=>{});
+      this.dataservice.getAllmission().subscribe(()=>{});
+      this.dataservice.getAllprospect().subscribe(()=>{});
+  
+  
     this.dataSource.data = [
       // { nom: 'John Doe', pays: 'France', telephone: '123456789', secteur: 'Technologie', canal: 'Email', canalInterlocuteur: 'Téléphone', action: '' },
       // { nom: 'Jane Smith', pays: 'USA', telephone: '987654321', secteur: 'Finance', canal: 'Téléphone', canalInterlocuteur: 'Email', action: '' },
-      // Ajoutez d'autres lignes de données selon vos besoins
+      
     ];
   }
   cardLayout = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
@@ -64,7 +72,7 @@ export class DashComponent implements OnInit {
  
 
   OpenEditDialog(id: any) {
-    // Ajoutez votre logique pour ouvrir le dialogue d'édition ici
-    console.log("Ouverture du dialogue pour l'ID :", id);
+    
+    //console.log("Ouverture du dialogue pour l'ID :", id);
   }
 }

@@ -21,67 +21,42 @@
     <div class="row">
       <mat-form-field appearance="outline">
         <mat-label>Reférence mission </mat-label>
-        <input
-          matInput
-          type="text"
-          [(ngModel)]="mission_ref"
-          [ngModelOptions]="{ standalone: true }"
-          placeholder="Reférence mission"
-        />
+        <input matInput type="text" [(ngModel)]="mission_ref" [ngModelOptions]="{ standalone: true }"
+          placeholder="Reférence mission" />
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Designation</mat-label>
-        <input
-          matInput
-          type="text"
-          [(ngModel)]="designation"
-          [ngModelOptions]="{ standalone: true }"
-          placeholder="Designation"
-        />
+        <input matInput type="text" [(ngModel)]="designation" [ngModelOptions]="{ standalone: true }"
+          placeholder="Designation" />
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Lieu d'imputation</mat-label>
-        <input
-          matInput
-          type="text"
-          [(ngModel)]="lieuimput"
-          [ngModelOptions]="{ standalone: true }"
-          placeholder="Lieu d'imputation"
-        />
+        <input matInput type="text" [(ngModel)]="lieuimput" [ngModelOptions]="{ standalone: true }"
+          placeholder="Lieu d'imputation" />
       </mat-form-field>
     </div>
 
     <div class="row">
       <mat-form-field appearance="outline">
         <mat-label>Entité</mat-label>
-        <input
-          matInput
-          type="text"
-          [(ngModel)]="entite"
-          [ngModelOptions]="{ standalone: true }"
-          placeholder="Entité"
-        />
+        <input matInput type="text" [(ngModel)]="entite" [ngModelOptions]="{ standalone: true }" placeholder="Entité" />
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Nombre de jours</mat-label>
-        <input
-          matInput
-          type="number"
-          [(ngModel)]="nombrej"
-          [ngModelOptions]="{ standalone: true }"
-          placeholder="Nombre de jours"
-        />
+        <input matInput type="number" [(ngModel)]="nombrej" [ngModelOptions]="{ standalone: true }"
+          placeholder="Nombre de jours" />
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Identifiant du client</mat-label>
-        <input
-          matInput
-          type="number"
-          [(ngModel)]="clientid"
-          [ngModelOptions]="{ standalone: true }"
-          placeholder="Identifiant du client"
-        />
+        <mat-select [(ngModel)]="clientid" [ngModelOptions]="{ standalone: true }">
+          <mat-option [value]="null" disabled>Choisir un client</mat-option>
+          <mat-option *ngFor="let client of clientArray" [value]="client.clientid">
+            {{ client.clientname }}
+          </mat-option>
+        </mat-select>
       </mat-form-field>
+      
+      <!-- <p>Client sélectionné: {{ getClientName(clientid) }}</p> -->
     </div>
   </div>
 </div>

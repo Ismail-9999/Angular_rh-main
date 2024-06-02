@@ -28,17 +28,17 @@ export class AuthGuard {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    console.log('authGuard#canActivate called');
+    //console.log('authGuard#canActivate called');
     const storedToken = localStorage.getItem('accessToken');
     // const acces =  this.authService.getAccessToken ;
     if (storedToken !== null) {
       // Token is present, user is authenticated
-      console.log('User is authenticated', storedToken);
-      console.log('is auth ' , this.authService.getAccessToken() )
+      //console.log('User is authenticated', storedToken);
+      //console.log('is auth ' , this.authService.getAccessToken() )
       return true;
     } else {
       // Token is null, user is not authenticated
-      console.log('Redirecting to login');
+      //console.log('Redirecting to login');
       return this.router.createUrlTree(['/login']);
     }
   }

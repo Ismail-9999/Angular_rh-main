@@ -38,7 +38,7 @@ export class DashTableDataSource extends DataSource<any[]> {
   connect(): Observable<any[]> {
     if (!this.paginator || !this.sort) {
       if (!this.paginatorAndSortSet) {
-        console.log('Paginator or Sort not available during initial connect');
+        //console.log('Paginator or Sort not available during initial connect');
         return of([]);
       }
       

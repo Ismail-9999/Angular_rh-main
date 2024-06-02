@@ -7,6 +7,7 @@ import { AuthServiceService } from '../../Auth/auth-service.service';
 import { MatInput } from '@angular/material/input';
 import { DataService } from '../../cache-data/dataService.service';
 import { FormControl } from '@angular/forms';
+import { environmentdev } from '../../../environments/environment.development';
 
 @Component({
   selector: 'app-client-data',
@@ -26,7 +27,9 @@ export class ClientDataComponent {
   @ViewChild('filterInput') filterInput!: MatInput;
   dataSource = new MatTableDataSource<any>();
 
-
+  baseUrl =  environmentdev.baseUrl;
+  //prodUrl = environment.prodUrl;
+  
   client : any   ;
   ClientArray : any []= [] ;
   filter = new FormControl('');
@@ -47,7 +50,7 @@ export class ClientDataComponent {
 
   getAllClient1 (){
     this.dataService.getAllClient().subscribe((resudata: any) => {
-      console.log(resudata);
+      //console.log(resudata);
       this.ClientArray =resudata;
       this.dataSource = new MatTableDataSource(resudata);
       this.dataSource.paginator = this.paginator;

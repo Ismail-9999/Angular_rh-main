@@ -8,6 +8,7 @@ import { RelaunchComponent } from '../../dialog/relaunch/relaunch.component';
 import { ActivatedRoute, Route } from '@angular/router';
 import { ProspectdetailsService } from '../../details-service/prospectdetails.service';
 import { AuthServiceService } from '../../Auth/auth-service.service';
+import { environmentdev } from '../../../environments/environment.development';
 
 @Component({
   selector: 'app-dash-data',
@@ -35,22 +36,16 @@ export class DashDataComponent {
   @ViewChild(MatSort) sort!: MatSort;
   dataSource = new MatTableDataSource<any>();
 
+
+  baseUrl = environmentdev.baseUrl;
+  //prodUrl = environment.prodUrl;
  
   ngOnInit (){
-    console.log('This is the Data',this.getProsdata());
+    //console.log('This is the Data',this.getProsdata());
+    this.getProsdata();
    
   }
 
-//GET consultant by missions count 
-  /*getdata(){
-    this.http.get('http://localhost:8084/api/mission/dstab')
-    .subscribe((resudata : any )=>{
-      console.log(resudata);
-      this.dataSource = new MatTableDataSource(resudata);
-      this.dataSource.paginator = this.paginator;
-    })
-
-  }*/
 
 ///GET prospect data
 getProsdata(){
@@ -60,9 +55,11 @@ getProsdata(){
       Authorization: `Bearer ${this.auth.getAccessToken()}`,
     });
   // this.http.get('https://back-end-rh.onrender.com/api/prospect/norelance',{headers})
-  this.http.get('http://localhost:8084/api/prospect/norelance',{headers})
+  // this.http.get(`${this.prodUrl}api/prospect/norelance`,{headers})
+
+  this.http.get(`${this.baseUrl}api/prospect/norelance`,{headers})
   .subscribe((resudata : any )=>{
-    console.log(resudata);
+    //console.log(resudata);
     this.dataSource = new MatTableDataSource(resudata);
     this.dataSource.paginator = this.paginator;
     this.prospect = resudata ;
@@ -90,7 +87,9 @@ OpenEditDialog(prospectId: number): void {
       Authorization: `Bearer ${this.auth.getAccessToken()}`,
     });
   // this.http.get(`https://back-end-rh.onrender.com/api/prospect/${prospectId}`,{headers})
-  this.http.get(`http://localhost:8084/api/prospect/${prospectId}`,{headers})
+  // this.http.get(`${this.prodUrl}api/prospect/${prospectId}`,{headers})
+
+  this.http.get(`${this.baseUrl}api/prospect/${prospectId}`,{headers})
   .subscribe((prospectData: any) => {
     const dialogRef = this.dialog.open(RelaunchComponent, {
       width: '900px',
@@ -108,4 +107,13 @@ OpenEditDialog(prospectId: number): void {
 }
 }
 
- 
+ //GET consultant by missions count 
+  /*getdata(){
+    this.http.get('http://localhost:8084/api/mission/dstab')
+    .subscribe((resudata : any )=>{
+      console.log(resudata);
+      this.dataSource = new MatTableDataSource(resudata);
+      this.dataSource.paginator = this.paginator;
+    })
+
+  }*/

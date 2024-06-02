@@ -4,6 +4,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AuthServiceService } from '../../Auth/auth-service.service';
+import { environmentdev } from '../../../environments/environment.development';
+import { DataService } from '../../cache-data/dataService.service';
 
 @Component({
   selector: 'app-prospect-dialog',
@@ -14,17 +16,21 @@ export class ProspectDialogComponent {
   // private apiUrl = 'https://back-end-rh.onrender.com/api/prospect/update';
   private apiUrl = 'http://localhost:8084/api/prospect/update';
 
+  baseUrl = environmentdev.baseUrl;
+ //prodUrl = environment.prodUrl;
+
   constructor(
     public dialogRef: MatDialogRef<ProspectDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private http: HttpClient,
     private snackBar: MatSnackBar,
-    private auth: AuthServiceService
+    private auth: AuthServiceService,
+    private dataService : DataService
   ) {
     this.data.prospect;
   }
   ngOnInit() {
-    console.log('Prospect data:', this.data.prospect);
+    //console.log('Prospect data:', this.data.prospect);
   }
 
   save(): void {
@@ -48,7 +54,10 @@ export class ProspectDialogComponent {
       formation : this.data.prospect.formation ,
       disponibilite : this.data.prospect.disponibilite ,
       competencetechnique :this.data.prospect.competencetechnique,
-      status : this.data.prospect.status
+      status : this.data.prospect.status,
+      certification: this.data.prospect.certification,
+      projetprofessionnel: this.data.prospect.projetprofessionnel
+      
 
       
     };
@@ -60,14 +69,17 @@ export class ProspectDialogComponent {
     });
 
     this.http
-      .put(this.apiUrl, prospectData, { responseType: 'text', headers})
+      //.put(`${this.prodUrl}api/prospect/update`, prospectData, { responseType: 'text', headers})
+      
+      .put(`${this.baseUrl}api/prospect/update`, prospectData, { responseType: 'text', headers})
       .subscribe({
         next: (response) => {
-          console.log('Prospect updated successfully:', response);
+          //console.log('Prospect updated successfully:', response);
           this.data.parent.updateData(this.data.prospect);
           // console.log('Updated Prospect Data:', this.data.prospect);
           this.dialogRef.close(this.data.prospect);
-          this.snackBar.open('Prospect mis a jour avec succées', 'Close', {
+          this.dataService.deleteCacheEntry('prospect');
+          this.snackBar.open('Prospect mis a jour avec succès', 'Fermer', {
             duration: 3000,
           });
         },

@@ -20,7 +20,7 @@ export class MyChart3Component {
    
   ngOnInit(): void {
     this.chartService.getClientDatda().subscribe((data) => {
-      console.log(data);
+      //console.log(data);
       this.chartData3 = data;
       this.createChart3(data);
     });
@@ -28,7 +28,7 @@ export class MyChart3Component {
 }
 
 createChart3(data : any []): void {
-  console.log(this.chartData3);
+  //console.log(this.chartData3);
   const labels = data.map((item) => item[0]); //  // Extract designation
   const values = data.map((item) => item[1]); //   // Extract count
 

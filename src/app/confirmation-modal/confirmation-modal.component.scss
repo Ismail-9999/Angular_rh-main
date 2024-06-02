@@ -1,0 +1,45 @@
+/* confirmation-modal.component.scss */
+:host {
+    .mat-dialog-container {
+      width: 400px; /* Ajustez la largeur selon vos besoins */
+      max-width: 80vw; /* Ajustez pour les petits écrans */
+    }
+  
+    h1 {
+      font-size: 1.5em;
+    }
+  
+    div[mat-dialog-content] {
+      font-size: 1.2em;
+      margin-bottom: 20px;
+      font-weight: 500;
+    }
+  
+    div[mat-dialog-actions] {
+      display: flex;
+      justify-content: flex-end;
+    }
+  
+    button {
+      margin-left: 10px;
+    }
+  
+    .cancel-button {
+      background-color: #f44336; /* Couleur de fond rouge pour annuler */
+      color: white; /* Couleur du texte */
+      &:hover {
+        background-color: #d32f2f; /* Couleur de fond rouge foncé pour le survol */
+      }
+    }
+  
+    .confirm-button {
+      background-color: #4caf50; /* Couleur de fond verte pour confirmer */
+      color: white; /* Couleur du texte */
+      &:hover {
+        background-color: #388e3c; /* Couleur de fond verte foncé pour le survol */
+      }
+    }
+  }
+  
+
+  

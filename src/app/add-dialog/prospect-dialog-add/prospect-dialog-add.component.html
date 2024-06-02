@@ -15,8 +15,12 @@
   .mat-form-field {
     width: 100%;
   }
+  .full-width {
+    width: 100%;
+  }
 </style>
 <div class="main">
+  <form [formGroup]="prospectForm" >
   <div mat-dialog-content class="content">
     <h1>Informations Personnelles</h1>
     <div class="row">
@@ -25,18 +29,21 @@
         <input
           matInput
           type="text"
-          [(ngModel)]="nom"
-          [ngModelOptions]="{ standalone: true }"
+          formControlName="nom"
+          
           placeholder="Nom du prospect"
         />
+        <mat-error *ngIf="prospectForm.get('nom')?.invalid && prospectForm.get('nom')?.touched">
+          {{dataService.getErrorMessage('Nom',prospectForm.controls['nom'].errors)}}
+        </mat-error>
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Carte National</mat-label>
         <input
           matInput
           type="text"
-          [(ngModel)]="cin"
-          [ngModelOptions]="{ standalone: true }"
+          formControlName="cin"
+        
           placeholder="CIN"
         />
       </mat-form-field>
@@ -45,12 +52,15 @@
         <input
           matInput
           type="text"
-          [(ngModel)]="telephone"
-          [ngModelOptions]="{ standalone: true }"
+          formControlName="telephone"
+          
           placeholder="GSM"
         />
+        <!-- <mat-error *ngIf="prospectForm.get('telephone')?.invalid && prospectForm.get('telephone')?.touched">
+        Le Téléphone doit contenir 10 chiffres
+        </mat-error> -->
       </mat-form-field>
-    </div>
+    </div>&nbsp;
     <h1>Formation et Niveau Academique</h1>
     <div class="row">
       <mat-form-field appearance="outline">
@@ -58,9 +68,19 @@
         <input
           matInput
           type="date"
-          [(ngModel)]="dateNaissance"
-          [ngModelOptions]="{ standalone: true }"
+          formControlName="dateNaissance"
+          
           placeholder="Date de naissance"
+        />
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Langues </mat-label>
+        <input
+          matInput
+          type="text"
+          formControlName="langue"
+          
+          placeholder="Langues"
         />
       </mat-form-field>
       <mat-form-field appearance="outline">
@@ -68,30 +88,22 @@
         <input
           matInput
           type="text"
-          [(ngModel)]="email"
-          [ngModelOptions]="{ standalone: true }"
+          formControlName="email"
+          
           placeholder="Email"
         />
       </mat-form-field>
-      <mat-form-field appearance="outline">
-        <mat-label>Formation</mat-label>
-        <input
-          matInput
-          type="text"
-          [(ngModel)]="formation"
-          [ngModelOptions]="{ standalone: true }"
-          placeholder="Formation"
-        />
-      </mat-form-field>
+      
+      
     </div>
     <div class="row">
       <mat-form-field appearance="outline">
-        <mat-label>Secteur D'avtivité</mat-label>
+        <mat-label>Secteur D'activité</mat-label>
         <input
           matInput
           type="text"
-          [(ngModel)]="secteuractivite"
-          [ngModelOptions]="{ standalone: true }"
+          formControlName="secteuractivite"
+         
           placeholder="Secteur d'activité"
         />
       </mat-form-field>
@@ -100,64 +112,123 @@
         <input
           matInput
           type="text"
-          [(ngModel)]="niveauacademique"
-          [ngModelOptions]="{ standalone: true }"
+          formControlName="niveauacademique"
+         
           placeholder="Niveau académique"
          />
       </mat-form-field>
       <mat-form-field appearance="outline">
-        <mat-label>Année d'experience</mat-label>
+        <mat-label>Année d'expérience</mat-label>
         <input
           matInput
           type="text"
-          [(ngModel)]="anneeexperience"
-          [ngModelOptions]="{ standalone: true }"
-          placeholder="Années d'experiences"
+          formControlName="anneeexperience"
+          
+          placeholder="Années d'expériences"
         />
       </mat-form-field>
     </div>
-    <h1>Compétences & Experiences  </h1>
+    <h1>Compétences & Expériences  </h1>
     <div class="row">
-      <mat-form-field appearance="outline">
+      <mat-form-field appearance="outline" class="full-width">
         <mat-label>Compétence métier</mat-label>
         <textarea
           matInput
           type="text"
-          [(ngModel)]="competencemetier"
-          [ngModelOptions]="{ standalone: true }"
+          formControlName="competencemetier"
+          
           placeholder="Compétence Métier"
           style="height: 90px"
           ></textarea>
       </mat-form-field>
-      <mat-form-field appearance="outline">
-        <mat-label>Experience professionnelle</mat-label>
+    </div>
+    <div class="row">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Compétence technique</mat-label>
         <textarea
           matInput
           type="text"
-          [(ngModel)]="experienceprofessionnelle"
-          [ngModelOptions]="{ standalone: true }"
-          placeholder="Experience Professionnelle"
-          style="height: 90px"
-          ></textarea>
-      </mat-form-field>
-      <mat-form-field appearance="outline">
-        <mat-label>Compétence téchnique</mat-label>
-        <textarea
-          matInput
-          type="text"
-          [(ngModel)]="competencetechnique"
-          [ngModelOptions]="{ standalone: true }"
+          formControlName="competencetechnique"
+          
           placeholder="Compétence technique"
           style="height: 90px"
           ></textarea>
       </mat-form-field>
     </div>
+    <div class="row">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Projet Professionnel</mat-label>
+        <textarea
+          matInput
+          type="text"
+          formControlName="projetprofessionnel"
+          
+          placeholder="Projet Professionnel"
+          style="height: 90px"
+          ></textarea>
+      </mat-form-field>
+    </div>
+    <div class="row">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Expérience professionnelle</mat-label>
+        <textarea
+          matInput
+          type="text"
+          formControlName="experienceprofessionnelle"
+         
+          placeholder="Expérience Professionnelle"
+          style="height: 90px"
+          ></textarea>
+      </mat-form-field>
+    </div>
+    <div class="row">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Certifications</mat-label>
+      <textarea
+        matInput
+        type="text"
+        formControlName="certification"
+       
+        placeholder="Certifications "
+        style="height: 90px"
+        ></textarea>
+    </mat-form-field>
   </div>
+  <div class="row">
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Formation</mat-label>
+    <input
+      matInput
+      type="text"
+      formControlName="formation"
+      
+      placeholder="Formation"
+      style="height: 90px"
+    />
+  </mat-form-field>
 </div>
+<div class="row">
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Disponibilité</mat-label>
+    <input
+      matInput
+      type="text"
+      formControlName="disponibilite"
+      
+      placeholder="Disponibilité"
+      style="height: 90px"
+    />
+  </mat-form-field>
+</div>
+    
+  </div>
+
 
 <div mat-dialog-actions>
-  <button mat-raised-button color="primary" (click)="save()">
+  <button [disabled]="prospectForm.invalid" mat-raised-button color="primary" (click)="save()">
     Sauveguarder
   </button>
   <button mat-raised-button color="warn" (click)="close()">Annuler</button>
+  </div>
+  </form>
 </div>

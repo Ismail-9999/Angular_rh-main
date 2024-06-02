@@ -1,16 +1,26 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
+import { environmentdev } from '../../environments/environment.development';
+import { ValidationErrors } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
 
+    baseUrl = environmentdev.baseUrl ; 
+    //prodUrl = environment.prodUrl;
+
   private cache: Map<string, any> = new Map();
+  
 
   constructor(private http: HttpClient) { }
+
+  deleteCacheEntry(key: string) {
+    this.cache.delete(key);
+  }
 
   //------------------------PARTIE CONSULTANT------------------------------//
 
@@ -21,7 +31,7 @@ export class DataService {
     if (cachedData) {
       try {
         const parsedData = JSON.parse(cachedData);
-        console.log('Data consultant in cache', parsedData);
+        //console.log('Data consultant in cache', parsedData);
         return of(parsedData);
       } catch (error) {
         console.error('Error parsing cached data:', error);
@@ -34,9 +44,10 @@ export class DataService {
       Authorization: `Bearer ${storedToken}`,
     });
 
-    return this.http.get<any>('http://localhost:8084/api/consultant/consultant', { headers }).pipe(
+    //return this.http.get<any>(`${this.prodUrl}api/consultant/consultant`, { headers }).pipe(
+    return this.http.get<any>(`${this.baseUrl}api/consultant/consultant`, { headers }).pipe(
       tap((response) => {
-        console.log('Data consultant in API', response);
+        //console.log('Data consultant in API', response);
         try {
           const responseData = JSON.stringify(response);
           this.cache.set(cacheKey, responseData);
@@ -57,7 +68,7 @@ export class DataService {
     if (cachedData) {
       try {
         const parsedData = JSON.parse(cachedData);
-        console.log('Data client in cache', parsedData);
+        //console.log('Data client in cache', parsedData);
         return of(parsedData);
       } catch (error) {
         console.error('Error parsing cached data:', error);
@@ -70,9 +81,10 @@ export class DataService {
       Authorization: `Bearer ${storedToken}`,
     });
 
-    return this.http.get<any>('http://localhost:8084/api/client/show', { headers }).pipe(
+    // return this.http.get<any>(`${this.prodUrl}api/client/show`, { headers }).pipe(
+      return this.http.get<any>(`${this.baseUrl}api/client/show`, { headers }).pipe(
       tap((response) => {
-        console.log('Data client in API', response);
+        //console.log('Data client in API', response);
         try {
           const responseData = JSON.stringify(response);
           this.cache.set(cacheKey, responseData);
@@ -100,7 +112,7 @@ export class DataService {
     if (cachedData) {
       try {
         const parsedData = JSON.parse(cachedData);
-        console.log('Data mission in cache', parsedData);
+        //console.log('Data mission in cache', parsedData);
         return of(parsedData);
       } catch (error) {
         console.error('Error parsing cached data:', error);
@@ -113,9 +125,10 @@ export class DataService {
       Authorization: `Bearer ${storedToken}`,
     });
 
-    return this.http.get<any>('http://localhost:8084/api/mission/mission', { headers }).pipe(
+    // return this.http.get<any>(`${this.prodUrl}api/mission/mission`, { headers }).pipe(
+      return this.http.get<any>(`${this.baseUrl}api/mission/mission`, { headers }).pipe(
       tap((response) => {
-        console.log('Data mission in API', response);
+        //console.log('Data mission in API', response);
         try {
           const responseData = JSON.stringify(response);
           this.cache.set(cacheKey, responseData);
@@ -136,7 +149,7 @@ export class DataService {
     if (cachedData) {
       try {
         const parsedData = JSON.parse(cachedData);
-        console.log('Data prospect in cache', parsedData);
+        //console.log('Data prospect in cache', parsedData);
         return of(parsedData);
       } catch (error) {
         console.error('Error parsing cached data:', error);
@@ -149,9 +162,10 @@ export class DataService {
       Authorization: `Bearer ${storedToken}`,
     });
 
-    return this.http.get<any>('http://localhost:8084/api/prospect/prospect', { headers }).pipe(
+    // return this.http.get<any>(`${this.prodUrl}api/prospect/prospect`, { headers }).pipe(
+      return this.http.get<any>(`${this.baseUrl}api/prospect/prospect`, { headers }).pipe(
       tap((response) => {
-        console.log('Data prospect in API', response);
+        //console.log('Data prospect in API', response);
         try {
           const responseData = JSON.stringify(response);
           this.cache.set(cacheKey, responseData);
@@ -162,6 +176,7 @@ export class DataService {
       catchError(this.handleError<any>('getAllprospect'))
     );
       }
+     
 
       //------------------------PARTIE DETAILS CONSULTANT------------------------------//
 
@@ -174,4 +189,20 @@ export class DataService {
 
       //------------------------PARTIE DETAILS GED------------------------------//
    
+      //------------------------PARTIE ERREUR VALIDATEURS------------------------------//
+      getErrorMessage(fieldName: string, error: ValidationErrors | null) : string{
+
+        if(error == null) {
+          return '';
+        }
+        if(error['required']) {
+          return fieldName + " est obligatoire";
+        } else if (error['minlength']){
+          return fieldName+" doit avoir au moins " + error['minlength']['requiredLength']+ " caractères";
+        } else if (error['min']) {
+          return `${fieldName} doit être supérieur à ${error['min'].min}`;
+        } else {
+          return "";
+        } 
+      }
 }

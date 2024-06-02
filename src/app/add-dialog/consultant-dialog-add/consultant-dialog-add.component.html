@@ -18,25 +18,28 @@
 </style>
 
 <div class="main">
+  <form [formGroup]="consultantForm">
   <div mat-dialog-content class="content">
+    
     <div class="row">
       <mat-form-field appearance="outline">
         <mat-label>Nom</mat-label>
         <input
           matInput
           type="text"
-          [(ngModel)]="consultantname"
-          [ngModelOptions]="{ standalone: true }"
+          formControlName="consultantname"
           placeholder="Nom du consultant"
         />
+        <mat-error *ngIf="consultantForm.get('consultantname')?.invalid && consultantForm.get('consultantname')?.touched">
+          {{ dataService.getErrorMessage('Nom',consultantForm.controls['consultantname'].errors) }}
+        </mat-error>
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Carte National</mat-label>
         <input
           matInput
           type="text"
-          [(ngModel)]="consultantcin"
-          [ngModelOptions]="{ standalone: true }"
+          formControlName="consultantcin"
           placeholder="CIN"
         />
       </mat-form-field>
@@ -45,64 +48,71 @@
         <input
           matInput
           type="number"
-          [(ngModel)]="mobile"
-          [ngModelOptions]="{ standalone: true }"
+          formControlName="mobile"
+          
           placeholder="GSM"
         />
       </mat-form-field>
-    </div>
+    </div>&nbsp;
+    
     <div class="row">
       <mat-form-field appearance="outline">
         <mat-label>Date de naissance</mat-label>
         <input
           matInput
           type="date"
-          [(ngModel)]="consultantbirthdate"
-          [ngModelOptions]="{ standalone: true }"
+          formControlName="consultantbirthdate"
+          
           placeholder="Date de naissance"
         />
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Adresse mail</mat-label>
         <input matInput type="text"
-        [(ngModel)]="email"
-        [ngModelOptions]="{ standalone: true }"
+        formControlName="email"
+        
         placeholder="Adresse mail" />
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Taux journalier</mat-label>
         <input matInput type="number"
-        [(ngModel)]="tjm"
-        [ngModelOptions]="{ standalone: true }"
+        formControlName="tjm"
+        
         placeholder="TJM" />
+        <mat-error *ngIf="consultantForm.get('tjm')?.invalid && consultantForm.get('tjm')?.touched">
+          {{ dataService.getErrorMessage('Taux journalier', consultantForm.controls['tjm'].errors) }}
+        </mat-error>
+        
       </mat-form-field>
-    </div>
+    </div>&nbsp;
     <div class="row">
       <mat-form-field appearance="outline">
         <mat-label>Secteur d'activité</mat-label>
         <input matInput type="text"
-        [(ngModel)]="secteuractivite"
-        [ngModelOptions]="{ standalone: true }"
+        formControlName="secteuractivite"
+        
         placeholder="Secteur d'activité" />
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Compétence métier</mat-label>
         <input matInput type="text" 
-        [(ngModel)]="competencemetier"
-        [ngModelOptions]="{ standalone: true }"
+        formControlName="competencemetier"
+        
         placeholder="Compétence métier" />
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Experience professionnel </mat-label>
         <textarea matInput type="text" 
-        [(ngModel)]="experiencepro"
-        [ngModelOptions]="{ standalone: true }"
+        formControlName="experiencepro"
+        
         placeholder="Experience professionnel" ></textarea>
       </mat-form-field>
     </div>
-  </div>
+  
 </div>
 <div mat-dialog-actions>
-    <button mat-raised-button color="primary" (click)="save()">Sauveguarder</button>
+    <button [disabled]="consultantForm.invalid" mat-raised-button color="primary" (click)="save()">Sauveguarder</button>
     <button mat-raised-button color="warn" (click)="close()">Annuler</button>
   </div>
+</form>
+</div>

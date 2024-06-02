@@ -69,6 +69,14 @@ import { initializeKeycloak } from './utility/app.init';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { CanalDataComponent } from './data/canal-data/canal-data.component';
 import { EditConsultantComponent } from './dialog/edit-consultant/edit-consultant.component';
+import { DocumentPreviewModalComponent } from './all-details/document-preview-modal/document-preview-modal.component';
+import { SafeUrlPipe } from './all-details/safe-url.pipe';
+import { NgxDocViewerModule } from 'ngx-doc-viewer';
+import { PdfViewerComponent, PdfViewerModule } from 'ng2-pdf-viewer';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ConfirmationModalComponent } from './confirmation-modal/confirmation-modal.component';
+
+
  
 @NgModule({
   declarations: [
@@ -108,6 +116,10 @@ import { EditConsultantComponent } from './dialog/edit-consultant/edit-consultan
     AppDataComponent,
     CanalDataComponent,
     EditConsultantComponent,
+    DocumentPreviewModalComponent,
+    SafeUrlPipe,
+    ConfirmationModalComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -137,7 +149,10 @@ import { EditConsultantComponent } from './dialog/edit-consultant/edit-consultan
     MatSelectModule ,
     MatCheckboxModule,
     NgApexchartsModule,
-    KeycloakAngularModule
+    NgxDocViewerModule,
+    KeycloakAngularModule,
+    PdfViewerModule,
+    NgbModule
   ],
   providers: [
     // {

@@ -18,7 +18,7 @@ export class MyChartComponent implements OnInit{
    
   ngOnInit(): void {
     this.chartService.getProspectChartData().subscribe((data) => {
-      console.log(data);
+      //console.log(data);
       this.chartData2 = data;
       this.createChart2();
     });
@@ -26,7 +26,7 @@ export class MyChartComponent implements OnInit{
 }
 
 createChart2() {
-  console.log(this.chartData2); // Check the chartData2 array
+  //console.log(this.chartData2); // Check the chartData2 array
   const chartLabels = this.chartData2.map(item => item.prospectDomaine); // Use 'prospectDomaine' as labels
   const chartValues = this.chartData2.map(item => item.count); // Use 'count' as data points
 
@@ -34,7 +34,7 @@ createChart2() {
   const ctx = canvas.getContext('2d');
 
   if (ctx) {
-    console.log('createChart2 called');
+    //console.log('createChart2 called');
     new Chart(ctx, {
       type: 'bar',
       data: {

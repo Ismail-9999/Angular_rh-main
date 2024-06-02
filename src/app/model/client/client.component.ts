@@ -43,7 +43,7 @@ export class ClientComponent {
 
     dialogRef.afterClosed().subscribe((result) => {
       // Handle
-      console.log('Dialog closed with result:', result);
+      //console.log('Dialog closed with result:', result);
      /* this.matTableComponent.notifyRefresh();*/
       this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
         this.router.navigate(["/client"]);

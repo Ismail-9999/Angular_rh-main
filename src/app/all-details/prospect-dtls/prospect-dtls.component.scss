@@ -10,17 +10,78 @@
   box-sizing: border-box;
  
 }
+.info-box2 {
+  width: 65%;
+  margin: 15px;
+  padding: 15px;
+  border: 1px solid #ddd;
+  box-sizing: border-box;
+ 
+}
+
 .edit-icon {
   margin-left: auto;
 }
 
- 
+
+// .info-box3 {
+//   width: 15%;
+//   margin: 10px;
+//   padding: 15px;
+//   border: 1px solid #ddd;
+//   box-sizing: border-box;
+//   margin-left: auto;
+// }
+
+// .example-button-row {
+//     display: table-cell;
+//     max-width: 600px;
+//     display: flex;
+//     gap: 10px; /* Adjust the gap as needed */
+//     position: absolute;
+//     right: 20%;
+//   }
+
+//new
 .example-button-row {
-    display: table-cell;
-    max-width: 600px;
-    display: flex;
-    gap: 10px; /* Adjust the gap as needed */
+  display: flex;
+  justify-content: flex-end; /* Aligns buttons to the right end */
+  flex-wrap: wrap; /* Allows buttons to wrap to next line if needed */
+  gap: 10px; /* Adjust the gap as needed */
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: 0; /* Ensures the buttons stay on the right side */
+  padding: 10px; /* Optional: Add some padding for spacing */
+}
+
+.client-details {
+  margin-top: 20px;
+}
+
+.info-box3 {
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* Adjust the gap as needed */
+  max-width: 600px;
+  margin: 0 auto; /* Center the content */
+  padding: 20px; /* Add padding for better spacing */
+  border: 1px solid #ccc; /* Optional: Add a border */
+  border-radius: 5px; /* Optional: Add rounded corners */
+}
+
+@media (max-width: 768px) {
+  .example-button-row {
+    justify-content: center; /* Center align buttons on smaller screens */
   }
+
+  .info-box3 {
+    width: 100%; /* Make the info box take full width on smaller screens */
+    padding: 10px; /* Adjust padding for smaller screens */
+  }
+}
+
+ //new T
+
  
   .custom-primary-button {
     background-color: #2196F3; /* Replace with your desired color */
@@ -62,4 +123,74 @@ button {
 .consultant {
   
   color: red; // Couleur du texte pour le statut "consultant"
+}
+
+
+.select-container {
+  width: 200px;
+  margin-bottom: 20px;
+}
+
+.select-container select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+  font-size: 16px;
+}
+
+/* Style lorsque le sélecteur est survolé */
+.select-container select:hover {
+  border-color: #aaa;
+}
+
+/* Style lorsque le sélecteur est activé (focus) */
+.select-container select:focus {
+  outline: none;
+  border-color: #2d9bf0;
+  box-shadow: 0 0 5px #2d9bf0;
+}
+
+
+.disponibilite-info {
+  background-color: #f0f0f0;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.disponibilite-info h3 {
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+.disponibilite-info p {
+  margin: 0;
+  font-size: 14px;
+}
+
+
+.information-box {
+  width: 100%; /* Adjust the width of info boxes */
+  margin: 10px;
+  padding: 15px;
+  border: 1px solid #df1818;
+  box-sizing: border-box;
+}
+
+.disponibilite-renseignee {
+  border-color: green;
+  color: green;
+}
+
+.disponibilite-non-renseignee {
+  border-color: red;
+  color: red;
+}
+
+.disponibilite-recontacter {
+  border-color: yellow;
+  color: yellow;
 }

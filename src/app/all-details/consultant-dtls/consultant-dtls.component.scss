@@ -15,12 +15,32 @@
   }
   
    
+  // .example-button-row {
+  //     display: table-cell;
+  //     max-width: 600px;
+  //     display: flex;
+  //     gap: 10px; /* Adjust the gap as needed */
+  //     position: relative;
+  //     left: 60%;
+  //   }
+
   .example-button-row {
-      display: table-cell;
-      max-width: 600px;
-      display: flex;
-      gap: 10px; /* Adjust the gap as needed */
+    display: flex;
+    justify-content: flex-end; /* Aligns buttons to the right end */
+    flex-wrap: wrap; /* Allows buttons to wrap to next line if needed */
+    gap: 10px; /* Adjust the gap as needed */
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: 0; /* Ensures the buttons stay on the right side */
+    padding: 10px; /* Optional: Add some padding for spacing */
+  }
+  
+  @media (max-width: 768px) {
+    .example-button-row {
+      justify-content: center; /* Center align buttons on smaller screens */
     }
+  }
+  
    
     .custom-primary-button {
       background-color: #2196F3;  

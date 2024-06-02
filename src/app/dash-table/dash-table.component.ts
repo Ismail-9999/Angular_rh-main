@@ -32,12 +32,12 @@ export class DashTableComponent implements OnInit, AfterViewInit {
         this.datasource.setPaginatorAndSort(this.paginator, this.sort);
       }
     } else {
-      console.log('MatPaginator or MatSort not available yet');
+      //console.log('MatPaginator or MatSort not available yet');
     }
   }
   ngOnInit() {
     this.pageservice.getTestData().subscribe((data: any[]) => {
-      console.log('Received data:', data);
+      //console.log('Received data:', data);
       this.data = data;
       this.datasource = new DashTableDataSource(this.pageservice, this.data);
      
@@ -45,13 +45,13 @@ export class DashTableComponent implements OnInit, AfterViewInit {
       if (this.paginator && this.sort) {
         this.datasource.setPaginatorAndSort(this.paginator, this.sort);
       } else {
-        console.log('Paginator or Sort not available');
+        //console.log('Paginator or Sort not available');
       }
     });
 
     this.pageservice.getCount().subscribe({
       next: pageCount => {
-        console.log('Received pageCount:', pageCount);
+        //console.log('Received pageCount:', pageCount);
         this.dataLength = pageCount;
       },
     });

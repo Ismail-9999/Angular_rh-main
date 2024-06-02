@@ -1,8 +1,8 @@
 <mat-card class="main-card">
   <div style="display: flex; align-items: center;">
     <button mat-icon-button (click)="goBack()">
-      <mat-icon>keyboard_arrow_left</mat-icon>  <!--<span style="margin-left: 4px;">Retour</span> -->
-      <span style="margin-left: 4px;" > </span>
+      <mat-icon>keyboard_arrow_left</mat-icon> 
+      <span style="margin-left: 4px;"></span>
     </button>
   </div>
   <mat-card-header>
@@ -16,6 +16,12 @@
             prospect.status === 'Prospect' ? 'blue': 'grey'">
               {{ prospect.status }}
             </span> 
+
+            <div class="information-box disponibilite-info
+             {{ prospect.disponibilite == '' ? 'disponibilite-non-renseignee' : 'disponibilite-renseignee' }}">
+              <h3><strong>Disponibilité :</strong>  {{ prospect.disponibilite == "" ? "Non renseigné" : prospect.disponibilite }} </h3>
+              
+            </div>
 
         <!-- <div *ngIf="prospect"
           style="
@@ -65,13 +71,13 @@
         </div>
         <!-- Information Box 3 -->
         <div class="info-box">
-          <h3><strong>Carte nationnal d'identité</strong></h3>
+          <h3><strong>Carte d'identité nationale </strong></h3>
           <p>{{ prospect.cin == "" ? "Non renseigné" : prospect.cin }}</p>
         </div>
 
         <!-- Information Box 3 -->
         <div class="info-box">
-          <h3><strong>Numéro de telephone</strong></h3>
+          <h3><strong>Numéro de téléphone</strong></h3>
           <p>0{{ prospect.telephone }}</p>
         </div>
 
@@ -107,7 +113,7 @@
 
         <!-- Information Box 3 -->
         <div class="info-box">
-          <h3><strong>Années d'experience</strong></h3>
+          <h3><strong>Années d'expérience</strong></h3>
           <p>
             {{
               prospect.anneeexperience == ""
@@ -130,7 +136,7 @@
 
         <!-- Information Box 3 -->
         <div class="info-box">
-          <h3><strong>Formation et certification</strong></h3>
+          <h3><strong>Formations</strong></h3>
           <p>
             {{
               prospect.formation == "" ? "Non renseigné" : prospect.formation
@@ -139,14 +145,35 @@
         </div>
 
         <div class="info-box">
-          <h3><strong>Experience professionnel</strong></h3>
+          <h3><strong>Certifications</strong></h3>
           <p>
+            {{
+              prospect.certification == "" ? "Non renseigné" : prospect.certification
+            }}
+          </p>
+        </div>
+
+        <div class="info-box">
+          <h3><strong>Expérience professionnelle</strong></h3>
+          <div [innerHTML]="formattedExperience"></div>
+          <!-- <p>
             {{
               prospect.experienceprofessionnelle == ""
                 ? "Non renseigné"
                 : prospect.experienceprofessionnelle
             }}
-          </p>
+          </p> -->
+        </div>
+        <div class="info-box">
+          <h3><strong>Projet professionnel</strong></h3>
+          
+          <p>
+            {{
+              prospect.projetprofessionnel == ""
+                ? "Non renseigné"
+                : prospect.projetprofessionnel
+            }}
+          </p> 
         </div>
 
         <!-- Information Box 3 -->
@@ -181,6 +208,12 @@
             }}
           </p>
         </div>
+        <div class="info-box">
+          <h3><strong>Disponibilité</strong></h3>
+          <p>
+            {{ prospect.disponibilite == "" ? "Non renseigné" : prospect.disponibilite }}
+          </p>
+        </div>
       </div>
 
       &nbsp;
@@ -188,21 +221,48 @@
         <button mat-raised-button (click)="OpenEditDialog()" color="primary">
           Modifier
         </button>
-        <button mat-raised-button color="warn" (click)="generate()">
-          Génerer CV
-        </button>
-     
+
+      <!-- <div style="margin-left: auto;">   -->
+        <button mat-raised-button color="warn" [matMenuTriggerFor]="menu">Générer CV</button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item (click)="selectTemplate('nom.docx')">Modèle 1</button>
+          <button mat-menu-item (click)="selectTemplate('CV ITEAM 3.docx')">Modèle 2</button>
+        </mat-menu>
+
+        
+          <!-- </div> -->
+        <!-- <button (click)="generate()">Generate and Preview</button>
+        <iframe style="width: 100%; height: 500px;" [src]="blobUrl"></iframe> -->
+        
+        <!-- <ngx-doc-viewer  [url]="urlSafe" viewer="google" style="width:100%;height:93vh;">
+        </ngx-doc-viewer> -->
+        
+
+        <!-- <div *ngIf="showTemplateSelector" class="select-container">
+          <select [(ngModel)]="selectedTemplate" (change)="generate()">
+            <option value="nom.docx">Modèle 1</option>
+            <option value="CV ITEAM 3.docx">Modèle 2</option>
+          </select>
+        </div> -->
       </div>
       <div class="client-details" *ngIf="prospect">
         <!-- Information Box 1 -->
-        <div class="info-box">
-          <h3>  Télecharger le CV du prospect</h3>
+        <div class="info-box3">
+          <h3>  Télécharger le CV du prospect</h3>
           <input  type="file" (change)="onFileSelected($event)" />
-          <button mat-raised-button color="warn" (click)="uploadFile()">
-            Télecharger le CV
+          <button mat-raised-button style="background-color: green; color: white;" (click)="uploadFile()">
+            Télécharger le CV
           </button>
         </div>
       </div>
+
+
+      <!--new-->
+      <!-- <div *ngIf="urlSafe">
+        <iframe [src]="urlSafe" width="100%" height="1000px"></iframe>
+      </div> -->
+
+
     </div>
   </mat-card-content>
 </mat-card>

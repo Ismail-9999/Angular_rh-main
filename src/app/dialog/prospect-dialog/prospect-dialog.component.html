@@ -1,5 +1,5 @@
 <div mat-dialog-title>
-  <h1>Modifier Fiche Consultant</h1>
+  <h1>Modifier Fiche Prospect</h1>
 </div>
 
 <style>
@@ -15,9 +15,13 @@
   .mat-form-field {
     width: 100%;
   }
+  .full-width {
+    width: 100%;
+  }
 </style>
 <div class="main">
   <div mat-dialog-content class="content">
+    <h1>Informations Personnelles</h1>
     <div class="row">
       <mat-form-field appearance="outline">
         <mat-label>Nom</mat-label>
@@ -30,15 +34,16 @@
         />
       </mat-form-field>
       <mat-form-field appearance="outline">
-        <mat-label>Date de naissance</mat-label>
+        <mat-label>Telephone</mat-label>
         <input
           matInput
-          type="text"
-          [(ngModel)]="data.prospect.dateNaissance"
+          type="number"
+          [(ngModel)]="data.prospect.telephone"
           [ngModelOptions]="{ standalone: true }"
-          placeholder="Adresse"
+          placeholder="telephone"
         />
       </mat-form-field>
+      
       <mat-form-field appearance="outline">
         <mat-label>Carte nationnal d'identité</mat-label>
         <input
@@ -49,15 +54,16 @@
         />
       </mat-form-field>
     </div>
+    <h1>Formation et Niveau Académique</h1>
     <div class="row">
       <mat-form-field appearance="outline">
-        <mat-label>Telephone</mat-label>
+        <mat-label>Date de naissance</mat-label>
         <input
           matInput
-          type="number"
-          [(ngModel)]="data.prospect.telephone"
+          type="date"
+          [(ngModel)]="data.prospect.dateNaissance"
           [ngModelOptions]="{ standalone: true }"
-          placeholder="telephone"
+          placeholder="Adresse"
         />
       </mat-form-field>
       <mat-form-field appearance="outline">
@@ -86,14 +92,24 @@
         <mat-label>Niveau d'études</mat-label>
         <input
           matInput
-          type="Telephone"
+          type="text"
           [(ngModel)]="data.prospect.niveauacademique"
           [ngModelOptions]="{ standalone: true }"
           placeholder="Niveau d'études"
         />
       </mat-form-field>
       <mat-form-field appearance="outline">
-        <mat-label>Année d'experience</mat-label>
+        <mat-label>Langues</mat-label>
+        <input
+          matInput
+          type="text"
+          [(ngModel)]="data.prospect.langue"
+          [ngModelOptions]="{ standalone: true }"
+          placeholder="Langues"
+        />
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Année d'expérience</mat-label>
         <input
           matInput
           type="text"
@@ -102,19 +118,11 @@
           placeholder="Années d'experience"
         />
       </mat-form-field>
-      <mat-form-field appearance="outline">
-        <mat-label>Compétences métier</mat-label>
-        <input
-          matInput
-          type="text"
-          [(ngModel)]="data.prospect.competencemetier"
-          [ngModelOptions]="{ standalone: true }"
-          placeholder="Compétences métier"
-        />
-      </mat-form-field>
+      
     </div>
+    <h1>Compétences & Expériences  </h1>
     <div class="row">
-      <mat-form-field appearance="outline">
+      <mat-form-field appearance="outline" class="full-width">
         <mat-label>Compétences Technique</mat-label>
         <textarea
           matInput
@@ -124,24 +132,79 @@
           placeholder="Compétences Technique"
           ></textarea> 
               </mat-form-field>
-      <mat-form-field appearance="outline">
-        <mat-label>Formation et certification</mat-label>
+              </div>
+              <div class="row">
+              <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Compétences métier</mat-label>
+                <input
+                  matInput
+                  type="text"
+                  [(ngModel)]="data.prospect.competencemetier"
+                  [ngModelOptions]="{ standalone: true }"
+                  placeholder="Compétences métier"
+                  
+                />
+              </mat-form-field>
+            </div>
+      <div class="row">    
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Formation </mat-label>
         <textarea
           matInput
           type="Telephone"
           [(ngModel)]="data.prospect.formation"
           [ngModelOptions]="{ standalone: true }"
-          placeholder="Formation et certification"
+          placeholder="Formation"
           ></textarea> 
              </mat-form-field>
-      <mat-form-field appearance="outline">
-        <mat-label>Experience professionnel</mat-label>
+      </div>
+      <div class="row">    
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Certification</mat-label>
+          <textarea
+            matInput
+            type="Telephone"
+            [(ngModel)]="data.prospect.certification"
+            [ngModelOptions]="{ standalone: true }"
+            placeholder="Certification"
+            ></textarea> 
+               </mat-form-field>
+        </div>
+      <div class="row">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Expérience Professionnelle</mat-label>
         <textarea
           matInput
           type="text"
           [(ngModel)]="data.prospect.experienceprofessionnelle"
           [ngModelOptions]="{ standalone: true }"
           placeholder="Experience professionnel"
+          style="height: 90px"
+          ></textarea>
+      </mat-form-field>
+    </div>
+    <div class="row">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Projet Professionnel</mat-label>
+        <textarea
+          matInput
+          type="text"
+          [(ngModel)]="data.prospect.projetprofessionnel"
+          [ngModelOptions]="{ standalone: true }"
+          placeholder="Projet Professionnel"
+          style="height: 90px"
+          ></textarea>
+      </mat-form-field>
+    </div>
+    <div class="row">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Disponibilité</mat-label>
+        <textarea
+          matInput
+          type="text"
+          [(ngModel)]="data.prospect.disponibilite"
+          [ngModelOptions]="{ standalone: true }"
+          placeholder="Disponibilité"
           style="height: 90px"
           ></textarea>
       </mat-form-field>

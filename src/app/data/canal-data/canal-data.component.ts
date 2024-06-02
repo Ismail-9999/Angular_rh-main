@@ -52,7 +52,7 @@ ngOnInit(): void {
 }
 
 OpenEditDialog(id: any) {
-  console.log("Ouverture du dialogue pour l'ID :", id);
+  //console.log("Ouverture du dialogue pour l'ID :", id);
 }
 
 ngAfterViewInit(){
